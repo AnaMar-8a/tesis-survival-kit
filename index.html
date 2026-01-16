@@ -2,684 +2,556 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Sustentación Maestría - Uninorte</title>
+<title>Sustentación Maestría - Gobernanza TI</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Presentación de Tesis de Maestría en Gobierno de TI - Uninorte">
+
+<!-- --- OPTIMIZACIÓN DE CARGA --- -->
+<!-- Preconectamos con los servidores de Google Fonts para acelerar la descarga de tipografías -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
-/* --- CONFIGURACIÓN DE ESTILO --- */
+/* =========================================
+   1. VARIABLES (Custom Properties)
+   ========================================= */
+/* Definimos los colores y valores en un solo lugar para facilitar cambios futuros. */
 :root {
-  /* Paleta Estricta */
-  --rojo: #E33E33;
-  --rojo-oscuro: #b71c1c;
-  --negro: #111111;
-  --verde: #2F4538;
-  --verde-brillante: #4caf50;
-  --beige: #A88E60; /* Ajustado para mejor contraste (antes #B59E73) */
-  --blanco-hueso: #F9F9F9;
-  --blanco-puro: #FFFFFF;
-
-  /* Variables Funcionales */
-  --fondo: var(--blanco-hueso);
-  --texto: var(--negro);
-  --acento: var(--rojo);
+  /* Paleta de Colores Institucional/Sobria */
+  --c-rojo: #E33E33;
+  --c-negro: #111111;
+  --c-verde: #2F4538;
+  --c-beige: #A88E60;
+  --c-blanco: #FFFFFF;
+  --c-gris-claro: #F9F9F9;
   
-  --sombra-suave: 0 10px 40px rgba(0,0,0,0.08);
-  --sombra-flotante: 0 20px 50px rgba(0,0,0,0.15);
+  /* Sombras para profundidad (Material Design) */
+  --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
+  --shadow-float: 0 20px 50px rgba(0,0,0,0.15);
+
+  /* Tiempos de animación unificados */
+  --trans-slide: 0.6s cubic-bezier(0.25, 1, 0.5, 1); /* Curva suave "ease-out" */
+  --trans-ui: 0.3s ease;
 }
 
-/* --- TEXTURA DE FONDO (NOISE) --- */
-.noise-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 0; opacity: 0.05;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
-
+/* =========================================
+   2. RESET Y BASE
+   ========================================= */
 body {
   margin: 0;
-  font-family: 'Lato', sans-serif;
-  background-color: #f0f0f0; /* Fondo externo */
-  color: var(--texto);
-  overflow: hidden;
+  font-family: 'Lato', sans-serif; /* Fuente principal sans-serif para lectura en pantalla */
+  background-color: #f0f0f0;
+  color: var(--c-negro);
+  overflow: hidden; /* Evita scrollbars accidentales durante la presentación */
+  font-size: 16px; 
 }
 
-#presentation-container {
+/* Accesibilidad: Indicador visual para navegación por teclado */
+*:focus-visible {
+    outline: 3px solid var(--c-rojo);
+    outline-offset: 2px;
+}
+
+/* =========================================
+   3. LAYOUT PRINCIPAL
+   ========================================= */
+#app {
   width: 100vw; height: 100vh;
   display: flex; justify-content: center; align-items: center;
   position: relative;
   background-color: #e5e5e5;
 }
 
-/* --- DIAPOSITIVAS --- */
-section {
-  display: none;
+/* Fondo con textura de ruido para evitar el "banding" de color y dar textura de papel */
+.noise-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* =========================================
+   4. ESTILOS DE DIAPOSITIVAS
+   ========================================= */
+.slide {
+  display: none; /* Por defecto ocultas */
   position: absolute;
-  width: 90%; height: 85%;
-  max-width: 1400px;
-  background: var(--blanco-puro);
-  padding: 60px 100px;
+  width: 90%; height: 85%; max-width: 1400px;
+  background: var(--c-blanco);
+  padding: 4rem 6rem;
   box-sizing: border-box;
   opacity: 0;
-  /* Estética de tarjeta premium */
-  box-shadow: var(--sombra-flotante);
-  border-top: 5px solid var(--rojo); 
-  transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: var(--shadow-float);
+  border-top: 5px solid var(--c-rojo); 
+  
+  /* ESTADO INICIAL (Antes de entrar): Desplazada hacia abajo */
+  transform: translate3d(0, 30px, 0); 
+  /* NOTA TÉCNICA: Usamos translate3d para forzar la aceleración por Hardware (GPU) */
+  
+  transition: opacity var(--trans-slide), transform var(--trans-slide);
   z-index: 1;
 }
 
-section.active {
+/* CLASE ACTIVA: Se aplica vía JS a la diapositiva actual */
+.slide.active {
   display: flex; flex-direction: column; justify-content: center;
   opacity: 1; z-index: 2;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0); /* Posición original */
 }
 
-/* --- TIPOGRAFÍA --- */
-h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--negro); margin: 0; }
+/* =========================================
+   5. CSS ATÓMICO (Utilidades)
+   ========================================= */
+/* Fuentes */
+.font-serif { font-family: 'Playfair Display', serif; } /* Para títulos elegantes */
+.font-sans { font-family: 'Lato', sans-serif; }
 
-h1 { 
-  font-size: 4rem; line-height: 1.1; margin-bottom: 25px; color: var(--negro); 
-  letter-spacing: -1px;
+/* Tamaños y Estilos de Texto */
+.text-h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
+.text-h2 { 
+    font-size: 2.5rem; margin-bottom: 2rem; 
+    border-bottom: 3px solid var(--c-beige); 
+    display: inline-block; padding-bottom: 0.5rem; 
 }
+.text-h3 { font-size: 1.5rem; margin-bottom: 1rem; font-weight: 700; }
+.text-body { font-size: 1.3rem; line-height: 1.6; color: #333; font-weight: 300; margin-bottom: 1rem; }
+.text-sm { font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; }
 
-h2 { 
-  font-size: 3rem; margin-bottom: 45px; 
-  border-bottom: 3px solid var(--beige); 
-  display: inline-block; padding-bottom: 10px;
+/* Colores de Texto */
+.text-red { color: var(--c-rojo); }
+.text-beige { color: var(--c-beige); }
+.text-dark { color: var(--c-negro); }
+.text-muted { color: #888; } /* Gris suave para info secundaria */
+.text-white { color: white; }
+
+/* Layouts (Grid System) */
+.grid-2 { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; height: 100%; }
+.grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-row { display: flex; align-items: center; gap: 1rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 1rem; }
+
+/* Componentes de UI */
+.card-visual {
+    background: #fcfcfc; padding: 2rem; 
+    border: 1px solid #eee; text-align: center;
+    box-shadow: var(--shadow-card);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    height: 100%; min-height: 300px;
+    border-radius: 8px; /* UX: Bordes suaves */
 }
-
-p, li { 
-  font-size: 1.5rem; line-height: 1.7; color: #333; margin-bottom: 18px; 
-  font-weight: 300;
+.card-highlight {
+    background: white; padding: 1.5rem; margin-bottom: 1rem;
+    border-left: 4px solid var(--c-rojo); 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 0 4px 4px 0;
 }
-strong { font-weight: 700; color: #000; }
+.icon-lg { font-size: 4rem; margin-bottom: 1rem; color: var(--c-negro); }
+.divider { width: 80px; height: 5px; background: var(--c-rojo); margin: 2rem 0; }
 
-/* --- LISTAS --- */
-ul { padding-left: 0; }
-li { list-style: none; position: relative; padding-left: 35px; }
-li::before { 
-  content: ''; position: absolute; left: 0; top: 12px; 
-  width: 8px; height: 8px; background: var(--rojo); 
-  transition: transform 0.2s;
+/* Listas personalizadas (Bullets rojos) */
+.list-custom li { list-style: none; position: relative; padding-left: 2rem; margin-bottom: 1rem; font-size: 1.3rem; font-weight: 300; }
+.list-custom li::before { 
+    content: ''; position: absolute; left: 0; top: 0.6em; 
+    width: 6px; height: 6px; background: var(--c-rojo); 
+    transition: transform 0.2s; 
 }
-li:hover::before { transform: scale(1.5); }
+/* Micro-interacción: El bullet crece al pasar el mouse */
+.list-custom li:hover::before { transform: scale(1.5); } 
 
-/* --- ANIMACIONES DE ENTRADA (Stagger) --- */
-.reveal-text { opacity: 0; transform: translateY(20px); transition: all 0.7s ease; }
-section.active .reveal-text:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
-section.active .reveal-text:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
-section.active .reveal-text:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
-section.active .reveal-text:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+/* =========================================
+   6. ANIMACIONES (Stagger Effect)
+   ========================================= */
+/* Efecto cascada: los elementos entran uno tras otro */
+.reveal { opacity: 0; transform: translateY(20px); transition: all 0.7s ease; }
+.slide.active .reveal:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+.slide.active .reveal:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+.slide.active .reveal:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+.slide.active .reveal:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
 
-/* --- LAYOUTS --- */
-.grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: center; height: 100%; }
-
-/* --- IMÁGENES --- */
-.visual-container {
-  background: #fcfcfc; height: 420px; padding: 20px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; border: 1px solid #eee; position: relative;
-  box-shadow: var(--sombra-suave);
-  transition: transform 0.3s;
-}
-.visual-container:hover { transform: translateY(-5px); }
-.visual-container img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: filter 0.4s; }
-.visual-container:hover img { filter: grayscale(0%); }
-.img-fallback { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; background: #f4f4f4; color: #555; }
-
-/* --- GRÁFICOS DE BARRAS / MÉTRICAS --- */
-.stat-row { width: 100%; text-align: left; margin-bottom: 35px; position: relative; }
-.progress-track { width: 100%; height: 18px; background: #eee; border-radius: 9px; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); }
-.progress-fill { height: 100%; width: 0; transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1); border-radius: 9px; }
-section.active .progress-fill { width: var(--w); }
-
-.progress-fill.neutral { background: #bbb; }
-.progress-fill.success { background: linear-gradient(90deg, var(--verde), var(--verde-brillante)); box-shadow: 0 0 20px rgba(76, 175, 80, 0.4); }
-.progress-fill.danger { background: linear-gradient(90deg, var(--rojo), var(--rojo-oscuro)); box-shadow: 0 0 15px rgba(227, 62, 51, 0.5); }
-
-.counter { font-family: 'Lato'; font-weight: 900; }
-.counter.big { font-size: 3.5rem; color: var(--verde); line-height: 1; }
-.counter.danger { color: var(--rojo); font-size: 1.6rem; }
-
-.stat-label { font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1.5px; color: #666; font-weight: bold; display: block; margin-bottom: 8px;}
-
-/* --- GRÁFICO BARRAS VERTICALES --- */
-.bar-chart-container { width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: space-around; padding-bottom: 30px; }
-.bar { width: 60px; background: #333; height: 0; transition: height 1s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: 0.5s; position: relative; }
-section.active .bar { height: var(--target-height); }
-.bar span { position: absolute; bottom: -30px; left: 50%; transform: translateX(-50%); font-size: 0.9rem; font-weight: bold; color: #555; width: 120px; text-align: center; }
-.bar.accent { background: var(--rojo); }
-.bar.neutral { background: #999; }
-
-/* --- BOTONES +INFO --- */
-.info-btn {
-  position: absolute; top: 60px; right: -1px;
-  background: var(--negro); color: white; border: none; padding: 12px 25px 12px 20px;
-  font-family: 'Lato', sans-serif; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1.5px;
-  cursor: pointer; transition: 0.3s; z-index: 10;
-  box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
-}
-.info-btn:hover { background: var(--rojo); padding-right: 35px; }
-
-/* --- BARRA LATERAL (SIDEBAR) --- */
-.sidebar-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); z-index: 90; }
-.sidebar {
-  position: fixed; top: 0; right: -600px; width: 500px; height: 100%;
-  background: var(--negro); color: var(--blanco-puro); z-index: 100;
-  padding: 80px 50px; box-sizing: border-box; transition: right 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: -20px 0 50px rgba(0,0,0,0.3);
-}
-.sidebar.open { right: 0; }
-.sidebar h3 { color: var(--rojo); margin-top: 0; margin-bottom: 30px; font-size: 2rem; border-bottom: 1px solid #333; padding-bottom: 15px;}
-.sidebar p, .sidebar li { color: #ccc; font-size: 1.2rem; line-height: 1.8; margin-bottom: 20px;}
-.close-sidebar { 
-    position: absolute; top: 25px; right: 25px; 
-    color: white; font-size: 2rem; cursor: pointer; 
-    opacity: 0.7; transition: 0.2s;
-}
-.close-sidebar:hover { opacity: 1; color: var(--rojo); transform: rotate(90deg); }
-
-/* --- CONTROLES Y NAVEGACIÓN --- */
+/* =========================================
+   7. CONTROLES DE NAVEGACIÓN
+   ========================================= */
 .controls { 
-    position: absolute; bottom: 40px; right: 100px; 
-    display: flex; gap: 0; z-index: 50; 
-    background: white; border: 1px solid #ddd;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    position: absolute; bottom: 2rem; right: 4rem; 
+    display: flex; background: white; border: 1px solid #ddd;
+    box-shadow: var(--shadow-card); z-index: 50;
+    border-radius: 4px; overflow: hidden;
 }
 .btn-nav {
-  width: 60px; height: 60px; border: none; border-left: 1px solid #eee; background: white; color: var(--negro);
-  font-size: 1.4rem; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center;
+  width: 50px; height: 50px; border: none; background: white; color: var(--c-negro);
+  font-size: 1.2rem; cursor: pointer; transition: var(--trans-ui);
+  border-left: 1px solid #eee;
+  display: flex; align-items: center; justify-content: center;
 }
 .btn-nav:first-child { border-left: none; }
-.btn-nav:hover { background: var(--negro); color: white; }
-.btn-nav:active { background: #333; }
+.btn-nav:hover { background: var(--c-negro); color: white; }
+.btn-nav:active { background: #333; } /* Feedback visual al hacer click */
 
 #slide-counter { 
-    display: flex; align-items: center; padding: 0 25px; 
-    font-family: 'Lato'; font-weight: 900; font-size: 1.1rem; color: #333; 
-    border-left: 1px solid #eee;
+    padding: 0 1.5rem; display: flex; align-items: center; 
+    font-weight: 900; user-select: none; 
+}
+.progress-bar { 
+    position: absolute; bottom: 0; left: 0; height: 6px; 
+    background: var(--c-rojo); width: 0; transition: width 0.5s; z-index: 100; 
 }
 
-.progress-container { position: absolute; bottom: 0; left: 0; width: 100%; height: 6px; background: #e0e0e0; z-index: 100;}
-.progress-bar { height: 100%; width: 0; background: var(--rojo); transition: width 0.5s; }
-
-/* Responsive */
+/* =========================================
+   8. RESPONSIVE DESIGN (Móvil)
+   ========================================= */
 @media (max-width: 900px) {
-  section { padding: 40px; width: 95%; height: 95%; }
-  h1 { font-size: 2.5rem; }
-  .grid { grid-template-columns: 1fr; gap: 40px; }
-  .visual-container { height: 250px; }
-  .sidebar { width: 100%; right: -100%; padding: 40px; }
-  .controls { right: 20px; bottom: 20px; }
-  .info-btn { top: auto; bottom: 100px; right: 20px; }
+  .slide { padding: 2rem; width: 95%; height: 95%; }
+  .grid-2, .grid-2-rev { grid-template-columns: 1fr; gap: 2rem; display: block; }
+  .text-h1 { font-size: 2.2rem; }
+  /* UX Móvil: Botones más grandes para dedos */
+  .controls { right: 50%; transform: translateX(50%); bottom: 1rem; width: 90%; justify-content: space-between; }
+  .btn-nav { width: 70px; height: 60px; font-size: 1.5rem; }
+  .card-visual { min-height: 200px; margin-top: 1rem; }
 }
 </style>
 </head>
 
 <body>
+<!-- Capa decorativa (Ruido) -->
+<div class="noise-bg"></div>
+<!-- Barra de progreso superior o inferior -->
+<div class="progress-bar" id="progressBar"></div>
 
-<!-- Capa de ruido para textura de papel -->
-<div class="noise-overlay"></div>
-
-<div id="presentation-container">
-  <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+<div id="app">
+  
+  <!-- =======================================================
+       DIAPOSITIVAS
+       ======================================================= -->
 
   <!-- 1. PORTADA -->
-  <section class="active" data-index="0">
-    <div class="reveal-text">
-        <img src="assets/images/norte.png" alt="Uninorte" style="height: 90px; display:block;" onerror="this.style.display='none'; document.getElementById('logo-text').style.display='block'">
-        <h3 id="logo-text" style="display:none; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--negro);">Universidad del Norte</h3>
+  <div class="slide active">
+    <div class="reveal">
+        <!-- Lógica de Fallback de Imagen: Si falla, muestra texto -->
+        <img src="assets/images/norte.png" alt="Logo Uninorte" style="height: 90px; display:block; margin-bottom: 1rem;" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block'">
+        <h3 id="logo-fallback" class="text-sm text-dark" style="display:none;">UNIVERSIDAD DEL NORTE</h3>
     </div>
-    
-    <div style="margin-top: 50px;">
-        <h1 class="reveal-text">Gobernanza y Gestión de TI</h1>
-        <h3 class="reveal-text" style="color:var(--beige); font-style:normal; margin-top:10px; font-weight:400; font-family:'Lato'; letter-spacing: 1px;">Modelo para la transformación de entes territoriales</h3>
+    <div class="mt-4 reveal">
+        <h1 class="text-h1 font-serif">Sistema para la gobernanza y gestión integral de TI</h1>
+        <h3 class="text-h3 font-sans text-beige" style="font-weight: 400;">En entes territoriales (Caso: Alcaldía de Santa Marta)</h3>
     </div>
-    
-    <div style="width: 80px; height: 5px; background: var(--rojo); margin: 40px 0;" class="reveal-text"></div>
-    
-    <div class="grid reveal-text" style="align-items: end;">
+    <div class="divider reveal"></div>
+    <div class="grid-2 reveal" style="align-items: end;">
         <div>
-            <small style="text-transform:uppercase; color:#999; letter-spacing:1px; font-weight:bold; font-size: 0.8rem;">Candidatos</small>
-            <p style="font-family:'Playfair Display'; font-size:1.5rem; margin:5px 0 0 0; color:var(--negro);"><strong>Catalina Molina Valencia</strong></p>
-            <p style="font-family:'Playfair Display'; font-size:1.5rem; margin:0; color:var(--negro);"><strong>Jaime Emiro Críales</strong></p>
+            <p class="text-sm text-muted mb-2">CANDIDATOS</p>
+            <p class="font-serif" style="font-size:1.3rem; font-weight: 700; margin-bottom: 0.5rem;">Catalina Molina Valencia</p>
+            <p class="font-serif" style="font-size:1.3rem; font-weight: 700; margin: 0;">Jaime Emiro Críales</p>
         </div>
         <div style="text-align: right;">
-            <small style="text-transform:uppercase; color:#999; letter-spacing:1px; font-weight:bold; font-size: 0.8rem;">Director</small>
-            <p style="font-family:'Playfair Display'; font-size:1.5rem; margin:5px 0 0 0; color:var(--negro);">Wilson Nieto</p>
-            <p style="font-size:0.9rem; margin-top:10px; color:#777; font-weight: 700;">BARRANQUILLA • 2025</p>
+            <p class="text-sm text-muted mb-2">TRABAJO DE GRADO</p>
+            <p class="text-sm text-dark" style="font-weight: 900;">Maestría en Gobierno de TI</p>
+            <p class="text-sm text-muted" style="margin-top: 1rem;">BARRANQUILLA • 2025</p>
         </div>
     </div>
-  </section>
+  </div>
 
   <!-- 2. INTRODUCCIÓN -->
-  <section data-index="1">
-    <button class="info-btn" onclick="openSidebar(1)" aria-label="Ver detalles de introducción">+ Detalles</button>
-    <h2>Introducción</h2>
-    <div class="grid">
-      <div class="reveal-text">
-        <p>El escenario digital de los municipios colombianos enfrenta un desafío crítico:</p>
-        <ul>
-          <li><strong>Desconexión:</strong> Sistemas aislados que no dialogan entre sí, duplicando esfuerzos.</li>
-          <li><strong>Ineficiencia:</strong> Procesos manuales que dilatan la atención ciudadana.</li>
-          <li><strong>Oportunidad:</strong> La necesidad urgente de un marco de gobierno formal.</li>
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Contexto y motivación</h2>
+    <div class="grid-2">
+      <div class="reveal">
+        <ul class="list-custom">
+          <li><strong>Retos:</strong> Operación TI fragmentada y baja interoperabilidad en entes territoriales.</li>
+          <li><strong>Impacto:</strong> Trámites manuales y experiencias ciudadanas desconectadas.</li>
+          <li><strong>Necesidad:</strong> Gobierno y gestión TI como habilitadores reales de transformación digital.</li>
+          <li><strong>Propósito:</strong> Un sistema integrador con foco en el ciudadano y cumplimiento normativo.</li>
         </ul>
       </div>
-      
-      <div class="visual-container reveal-text">
-        <img src="assets/images/foto_intro.jpg" onerror="this.style.display='none'" alt="Contexto">
-        <div class="img-fallback">
-             <i class="fas fa-network-wired" style="font-size:60px; color:#ddd; margin-bottom:20px;"></i>
-             <span style="font-weight:bold; color:#999; letter-spacing: 1px;">FRAGMENTACIÓN DIGITAL</span>
+      <div class="card-visual reveal" style="background: transparent; border:none; box-shadow:none;">
+           <i class="fas fa-users-gear icon-lg"></i>
+           <p class="text-sm text-red">FOCO CIUDADANO</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. PROBLEMA -->
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Situación problemática</h2>
+    <div class="grid-2">
+      <div class="reveal flex-col">
+        <div class="card-highlight">
+            <strong class="text-red text-sm">Aislamiento</strong>
+            <p class="text-body" style="margin:0.5rem 0 0;">Sistemas aislados y procesos no estandarizados.</p>
+        </div>
+        <div class="card-highlight">
+            <strong class="text-red text-sm">Opacidad</strong>
+            <p class="text-body" style="margin:0.5rem 0 0;">Limitaciones para decisiones basadas en datos.</p>
+        </div>
+        <div class="card-highlight">
+            <strong class="text-red text-sm">Debilidad</strong>
+            <p class="text-body" style="margin:0.5rem 0 0;">Falta de dirección y monitoreo estratégico.</p>
         </div>
       </div>
-    </div>
-    
-    <!-- SIDEBAR 1 -->
-    <div class="sidebar-overlay" id="overlay-1" onclick="closeSidebar(1)"></div>
-    <div class="sidebar" id="sidebar-1">
-        <span class="close-sidebar" onclick="closeSidebar(1)">&times;</span>
-        <h3>Contexto OCDE 2024</h3>
-        <p>Informe sobre Gobierno Digital en Colombia:</p>
-        <ul>
-            <li><strong>60%</strong> de municipios maneja catastro en papel, impidiendo la actualización en tiempo real.</li>
-            <li><strong>Baja Interoperabilidad:</strong> Ciudadanos actúan como "mensajeros" llevando documentos de una ventanilla a otra.</li>
-            <li><strong>Riesgo Crítico:</strong> Pérdida de información histórica por falta de backups centralizados y seguros.</li>
-        </ul>
-    </div>
-  </section>
-
-  <!-- 3. PROBLEMA (MÉTRICAS ROJAS) -->
-  <section data-index="2">
-    <button class="info-btn" onclick="openSidebar(2)" aria-label="Ver evidencia del problema">+ Evidencia</button>
-    <h2>La Problemática</h2>
-    <div class="grid">
-      <div class="reveal-text">
-        <div style="border-left:4px solid var(--rojo); padding-left:25px; margin-bottom:30px; background:#fafafa; padding: 20px 20px 20px 30px; border-radius: 0 4px 4px 0;">
-            <p style="font-family:'Playfair Display'; font-size:1.6rem; font-style:italic; color:#444; margin:0;">
-                "Se compra tecnología, pero no se gobierna la estrategia."
-            </p>
-        </div>
-        <p>Vectores de falla identificados:</p>
-        <ul>
-            <li>Decisiones reactivas y aisladas (No estratégicas).</li>
-            <li>Inversión sin retorno medible.</li>
-            <li>Pérdida de conocimiento por ciclos políticos.</li>
-        </ul>
-      </div>
-
-      <!-- PANEL DE MÉTRICAS "DANGER" -->
-      <div class="visual-container reveal-text" style="background:#fff; justify-content: space-around;">
-         <div style="width:100%; display: flex; flex-direction: column; gap: 25px; padding: 20px;">
-             <h4 style="color:#555; margin-bottom:10px; font-weight:bold; text-align: left; border-bottom: 1px solid #eee; padding-bottom: 10px;">DESPERDICIO DE RECURSOS</h4>
-             
-             <!-- Métrica 1 -->
-             <div class="stat-row">
-                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                     <span class="stat-label">Licencias sin Uso</span>
-                     <span class="counter danger" data-target="30">0%</span>
-                 </div>
-                 <div class="progress-track">
-                     <div class="progress-fill danger" style="--w: 30%;"></div>
-                 </div>
-             </div>
-
-             <!-- Métrica 2 -->
-             <div class="stat-row">
-                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                     <span class="stat-label">Duplicidad de Software</span>
-                     <span class="counter danger" data-target="50">0%</span>
-                 </div>
-                 <div class="progress-track">
-                     <div class="progress-fill danger" style="--w: 50%;"></div>
-                 </div>
-             </div>
-
-             <!-- Métrica 3 -->
-             <div class="stat-row">
-                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                     <span class="stat-label" style="color:var(--negro);">Desalineación Estratégica</span>
-                     <span class="counter danger" style="font-size:1.8rem;" data-target="85">0%</span>
-                 </div>
-                 <div class="progress-track">
-                     <div class="progress-fill danger" style="--w: 85%;"></div>
-                 </div>
-             </div>
-
-         </div>
+      <div class="card-visual reveal" style="border-color: var(--c-rojo); background: #fffafa;">
+         <i class="fas fa-triangle-exclamation icon-lg text-red"></i>
+         <h3 class="text-h3 text-red">Consecuencias</h3>
+         <p class="text-body">Inversiones reactivas, riesgos elevados y baja alineación estratégica.</p>
       </div>
     </div>
-    
-    <!-- SIDEBAR 2 -->
-    <div class="sidebar-overlay" id="overlay-2" onclick="closeSidebar(2)"></div>
-    <div class="sidebar" id="sidebar-2">
-        <span class="close-sidebar" onclick="closeSidebar(2)">&times;</span>
-        <h3>Impacto Fiscal</h3>
-        <p>El análisis financiero de 10 municipios muestra que el <strong>30% del presupuesto de TI</strong> se gasta en mantenimiento de sistemas obsoletos o licencias no utilizadas.</p>
-        <p>Además, la rotación de personal cada 4 años elimina la memoria institucional técnica, obligando a "reinventar la rueda" en cada administración.</p>
-    </div>
-  </section>
+  </div>
 
   <!-- 4. JUSTIFICACIÓN -->
-  <section data-index="3">
-    <h2>Justificación</h2>
-    <div class="grid">
-      <div class="reveal-text" style="padding: 40px; border: 1px solid #eee; background: #fafafa; position: relative;">
-         <!-- Decoración de esquina -->
-         <div style="position:absolute; top:0; left:0; width:0; height:0; border-top: 40px solid var(--beige); border-right: 40px solid transparent;"></div>
-         
-         <h3 style="color:var(--rojo); font-weight:bold;">Necesidad Estratégica</h3>
-         <hr style="background:var(--beige); width:50px; height:3px; border:none; margin:20px 0;">
-         <p>Los municipios categoría 4, 5 y 6 carecen de herramientas adaptadas a su realidad fiscal. El modelo propuesto cierra la brecha entre la normativa nacional (MINTIC) y la ejecución local.</p>
+  <div class="slide">
+    <h2 class="text-h2 font-serif">¿Por qué este sistema?</h2>
+    <div class="grid-2">
+      <div class="reveal">
+         <p class="text-body">Existe un <strong>déficit histórico</strong> de transformación digital por restricciones de capacidad.</p>
+         <p class="text-body">Falta un <strong>marco sistemático</strong> aplicable a la realidad de los entes territoriales.</p>
+         <p class="text-body"><strong>Relevancia:</strong> Mejora servicios al ciudadano, transparencia, control y confianza.</p>
       </div>
-      <div class="visual-container reveal-text" style="border:none; background: transparent; box-shadow:none;">
-          <i class="fas fa-scale-balanced" style="font-size:120px; color:var(--negro);"></i>
-          <h1 style="font-size:3rem; margin-top:20px;">Valor Público</h1>
-          <p style="text-transform:uppercase; letter-spacing:3px; color:var(--rojo); font-weight:bold;">Transparencia + Eficiencia</p>
+      <div class="reveal" style="padding: 2rem; background: var(--c-negro); border-radius: 4px;">
+         <h3 class="text-h3 text-white" style="border-bottom: 1px solid #555; padding-bottom:10px;">El Aporte</h3>
+         <p class="text-white text-body" style="margin-bottom:0;">Integración operable de:</p>
+         <ul class="list-custom text-white" style="font-size: 1rem;">
+             <li>Arquitectura Empresarial</li>
+             <li>Gobierno & Gestión TI</li>
+             <li>Regulación Vigente</li>
+         </ul>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- 5. OBJETIVOS -->
-  <section data-index="4">
-    <h2>Objetivos</h2>
-    <div class="grid">
-      <div class="reveal-text" style="border:1px solid var(--negro); padding:50px; position:relative;">
-        <span style="position:absolute; top:-12px; left:30px; background:var(--blanco-puro); padding:0 10px; font-weight:900; color:var(--rojo); border:1px solid var(--negro);">OBJETIVO GENERAL</span>
-        <p style="font-family:'Playfair Display'; font-size:2rem; line-height:1.4;">
-            Diseñar un sistema de gobernanza y gestión integral de TI adaptado a las capacidades de los entes territoriales.
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Objetivos</h2>
+    <div class="flex-col" style="height:100%;">
+      <div class="reveal" style="border:1px solid var(--c-negro); padding:2rem; margin-bottom: 2rem; position:relative;">
+        <span style="position:absolute; top:-12px; left:30px; background:var(--c-blanco); padding:0 10px; font-weight:900; color:var(--c-rojo); border:1px solid var(--c-negro);">GENERAL</span>
+        <p class="font-serif" style="font-size:1.8rem; line-height:1.3; margin:0;">
+            Diseñar un sistema de gobernanza y gestión TI para entes territoriales.
         </p>
       </div>
-      <div class="reveal-text">
-          <h3>Específicos</h3>
-          <ul>
-              <li>Identificar componentes conceptuales (Estado del arte).</li>
-              <li>Estructurar roles (Gobierno vs Gestión).</li>
-              <li>Validar mediante modelo de madurez.</li>
-              <li>Aplicar piloto en caso real.</li>
-          </ul>
+      <div class="grid-4 reveal">
+          <div class="card-highlight" style="border-left-color: var(--c-beige);"><strong>Esp. 1</strong> Identificar componentes conceptuales.</div>
+          <div class="card-highlight" style="border-left-color: var(--c-beige);"><strong>Esp. 2</strong> Estructurar el sistema propuesto.</div>
+          <div class="card-highlight" style="border-left-color: var(--c-beige);"><strong>Esp. 3</strong> Validar mediante modelo de madurez.</div>
+          <div class="card-highlight" style="border-left-color: var(--c-beige);"><strong>Esp. 4</strong> Aplicar en caso real (Santa Marta).</div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- 6. MARCO TEÓRICO -->
-  <section data-index="5">
-    <button class="info-btn" onclick="openSidebar(5)" aria-label="Ver referencias teóricas">+ Referencias</button>
-    <h2>Marco Teórico</h2>
-    <div class="grid">
-      <div class="reveal-text">
-        <div style="margin-bottom:25px; border-left:4px solid var(--rojo); padding-left:20px;">
-            <strong style="text-transform:uppercase; font-size:0.9rem; color:#999; letter-spacing: 1px;">Estándar Global</strong>
-            <h3 style="margin-top:5px; font-size:1.8rem;">COBIT 2019</h3>
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Fundamentos Conceptuales</h2>
+    <div class="grid-2">
+      <div class="reveal">
+        <div class="mb-2">
+            <h3 class="text-h3 text-red">Gobierno de TI (EDM)</h3>
+            <p class="text-body">Asegura valor, control y alineación. <br><em>Acciones:</em> Evaluar, Dirigir, Monitorear.</p>
         </div>
-        <div style="margin-bottom:25px; border-left:4px solid var(--negro); padding-left:20px;">
-            <strong style="text-transform:uppercase; font-size:0.9rem; color:#999; letter-spacing: 1px;">Estructura</strong>
-            <h3 style="margin-top:5px; font-size:1.8rem;">TOGAF & Zachman</h3>
+        <div class="mb-2">
+            <h3 class="text-h3 text-dark">Gestión de TI (PBRM)</h3>
+            <p class="text-body">Convierte dirección en capacidades. <br><em>Acciones:</em> Planear, Construir, Operar, Monitorear.</p>
         </div>
-        <div style="margin-bottom:25px; border-left:4px solid var(--beige); padding-left:20px;">
-            <strong style="text-transform:uppercase; font-size:0.9rem; color:#999; letter-spacing: 1px;">Sector Público</strong>
-            <h3 style="margin-top:5px; font-size:1.8rem;">Valor Público (Moore)</h3>
+         <div>
+            <h3 class="text-h3 text-beige">Gestión Corporativa</h3>
+            <p class="text-body">Ejecuta estrategia mediante recursos y procesos.</p>
         </div>
       </div>
-      
-      <div class="visual-container reveal-text" style="border:none; background:transparent; box-shadow:none;">
-          <div style="display:flex; flex-direction:column; align-items:center;">
-             <div style="display:flex; gap:30px; align-items:center;">
-                 <div style="width:110px; height:110px; border-radius:50%; border:2px solid var(--negro); display:grid; place-items:center; font-weight:bold; background: white;">COBIT</div>
-                 <i class="fas fa-plus"></i>
-                 <div style="width:110px; height:110px; border-radius:50%; border:2px solid var(--negro); display:grid; place-items:center; font-weight:bold; background: white;">TOGAF</div>
-             </div>
-             <i class="fas fa-arrow-down" style="margin:25px 0; color: var(--rojo);"></i>
-             <div style="background:var(--negro); color:white; padding:15px 40px; font-weight:bold; letter-spacing: 1px;">Modelo Adaptado</div>
-         </div>
+      <div class="card-visual reveal" style="border:none; box-shadow:none; background:transparent;">
+          <!-- Diagrama generado con CSS Puro (sin imágenes externas) -->
+          <div style="width:260px; height:260px; border:3px dashed #ccc; border-radius:50%; display:grid; place-items:center; position:relative;">
+              <div style="text-align:center;">
+                  <i class="fas fa-arrows-spin icon-lg" style="font-size:3rem; margin-bottom:10px;"></i>
+                  <p class="text-sm">CICLO DE VALOR</p>
+              </div>
+              <span style="position:absolute; top:-15px; background:white; padding:0 10px; font-weight:bold; color:var(--c-rojo);">EDM</span>
+              <span style="position:absolute; bottom:-15px; background:white; padding:0 10px; font-weight:bold;">PBRM</span>
+          </div>
       </div>
     </div>
-    
-    <!-- SIDEBAR 5 -->
-    <div class="sidebar-overlay" id="overlay-5" onclick="closeSidebar(5)"></div>
-    <div class="sidebar" id="sidebar-5">
-        <span class="close-sidebar" onclick="closeSidebar(5)">&times;</span>
-        <h3>Bibliografía Clave</h3>
-        <p>Fuentes primarias utilizadas para la construcción del modelo:</p>
-        <ul>
-            <li><strong>ISACA (2019):</strong> COBIT 2019 Framework: Introduction and Methodology.</li>
-            <li><strong>The Open Group (2018):</strong> The TOGAF Standard, Version 9.2.</li>
-            <li><strong>Moore, M.H. (1995):</strong> Creating Public Value. Harvard University Press.</li>
+  </div>
+
+  <!-- 7. MODELO PROPUESTO -->
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Sistema Integral Propuesto</h2>
+    <div class="grid-2">
+      <div class="reveal">
+        <ul class="list-custom">
+            <li><strong>Enfoque Sistémico:</strong> Articulación entre Gobierno Corporativo y TI.</li>
+            <li><strong>Eje Central:</strong> El ciudadano (experiencia y valor público).</li>
+            <li><strong>Componentes:</strong> Direccionamiento (CMI), Arquitectura y Procesos.</li>
+            <li><strong>Capacidades:</strong> Servicios, proyectos, talento, calidad.</li>
+            <li><strong>Control:</strong> Medición y madurez.</li>
         </ul>
+      </div>
+      <div class="reveal" style="background:var(--c-negro); padding:3rem; color:white; display:flex; flex-direction:column; justify-content:center; text-align:center; border-radius: 8px;">
+          <h3 class="text-h3 text-white" style="border-bottom:1px solid #555; padding-bottom:1rem;">La Clave</h3>
+          <p class="font-serif" style="font-size:1.5rem; font-style:italic; margin-top:1rem;">"Traducir la estrategia institucional en ejecución técnica medible."</p>
+          <i class="fas fa-check-double text-green" style="font-size:2rem; margin-top:1rem; color: #4caf50;"></i>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- 7. MODELO PROPUESTO (GRÁFICO BARRAS VERTICALES) -->
-  <section data-index="6">
-    <h2>El Modelo</h2>
-    <div class="grid">
-      <div class="reveal-text">
-        <p>Separación de poderes para el éxito:</p>
-        <div style="background:#fffafa; padding:25px; border-left:5px solid var(--rojo); margin-bottom:20px; border:1px solid #eee;">
-            <strong style="color:var(--rojo); letter-spacing: 1px;">GOBIERNO (EDM)</strong>
-            <p style="font-size:1.1rem; margin:5px 0 0 0;">El Alcalde dirige. Asegura que TI cumpla la promesa de valor.</p>
+  <!-- 8. CASO DE ESTUDIO -->
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Caso: Alcaldía de Santa Marta</h2>
+    <div class="grid-2">
+      <div class="reveal">
+        <div class="flex-row mb-2">
+            <i class="fas fa-map-location-dot text-red" style="font-size:2rem;"></i>
+            <div>
+                <strong>Caracterización</strong>
+                <p class="text-body" style="margin:0;">Análisis del mapa de procesos real.</p>
+            </div>
         </div>
-        <div style="background:#f4f4f4; padding:25px; border-left:5px solid var(--negro); border:1px solid #eee;">
-            <strong style="color:var(--negro); letter-spacing: 1px;">GESTIÓN (PBRM)</strong>
-            <p style="font-size:1.1rem; margin:5px 0 0 0;">El Jefe de TI ejecuta. Planea, construye y opera.</p>
+        <div class="flex-row mb-2">
+            <i class="fas fa-stethoscope text-red" style="font-size:2rem;"></i>
+            <div>
+                <strong>Diagnóstico</strong>
+                <p class="text-body" style="margin:0;">DOFA y análisis de brechas TI.</p>
+            </div>
+        </div>
+        <div class="flex-row">
+            <i class="fas fa-chart-line text-red" style="font-size:2rem;"></i>
+            <div>
+                <strong>Madurez & Plan</strong>
+                <p class="text-body" style="margin:0;">Adaptación del sistema por fases.</p>
+            </div>
         </div>
       </div>
-      
-      <!-- Visualización Conceptual del Modelo -->
-      <div class="visual-container reveal-text" style="background: transparent; border: none; box-shadow: none;">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border:2px solid var(--negro); width:90%; background: white;">
-              <div style="background:var(--blanco-puro); padding:30px; border-bottom:1px solid #000; border-right:1px solid #000;"><strong>EDM</strong><br><small>Estrategia</small></div>
-              <div style="background:var(--negro); color:white; padding:30px; display:flex; align-items:center; justify-content:center;"><strong>ALINEACIÓN</strong></div>
-              <div style="background:var(--rojo); color:white; padding:30px; display:flex; align-items:center; justify-content:center;"><strong>VALOR</strong></div>
-              <div style="background:var(--blanco-puro); padding:30px; border-top:1px solid #000; border-left:1px solid #000;"><strong>PBRM</strong><br><small>Operación</small></div>
-          </div>
+      <div class="card-visual reveal" style="background: #eef; border:none;">
+          <i class="fas fa-building-columns icon-lg text-dark"></i>
+          <h3 class="text-h3">Validación Real</h3>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- 8. CASO DE ESTUDIO (MÉTRICAS VERDES WOW) -->
-  <section data-index="7">
-    <h2>Resultados Piloto</h2>
-    <div class="grid">
-      <div class="reveal-text">
-         <div style="background: rgba(181, 158, 115, 0.1); padding: 30px; border-left: 5px solid var(--beige);">
-            <h3>Municipio Categoría 4</h3>
-            <p style="margin-top: 15px;"><strong>Diagnóstico:</strong> Madurez 1.5 (Ad Hoc).</p>
-            <p>Tras la intervención, se formalizó el rol del CIO y se estableció la hoja de ruta a 4 años.</p>
-         </div>
+  <!-- 9. RESULTADOS -->
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Resultados</h2>
+    <div class="grid-2">
+      <div class="reveal">
+        <ul class="list-custom">
+            <li><strong>Brechas Priorizadas:</strong> Identificadas desde diagnóstico y DOFA.</li>
+            <li><strong>Línea Base:</strong> Nivel de madurez para orientar la intervención.</li>
+            <li><strong>Ajuste Institucional:</strong> Adaptación de dimensiones a la Alcaldía.</li>
+            <li><strong>Plan de Ruta:</strong> Fases, acciones clave y riesgos definidos.</li>
+        </ul>
       </div>
-      
-      <div class="visual-container reveal-text" style="background: #fff; justify-content: space-around;">
-          <!-- Bloque de Comparación WOW -->
-          <div style="width: 100%; display: flex; flex-direction: column; gap: 30px; padding: 20px;">
-              
-              <!-- ANTES -->
-              <div class="stat-row">
-                  <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-                      <span class="stat-label">Antes (2024)</span>
-                      <span class="counter" data-target="20">0%</span>
-                  </div>
-                  <div class="progress-track">
-                      <div class="progress-fill neutral" style="--w: 20%;"></div>
-                  </div>
-              </div>
-
-              <!-- FLECHA INDICADORA -->
-              <div style="text-align:center; color:#ccc;">
-                  <i class="fas fa-arrow-down" style="animation: bounce 2s infinite;"></i>
-              </div>
-
-              <!-- DESPUÉS (WOW FACTOR) -->
-              <div class="stat-row">
-                  <div style="display:flex; justify-content:space-between; margin-bottom:5px; align-items:flex-end;">
-                      <span class="stat-label" style="color:var(--verde); font-size:1.1rem;">Después (Implementación)</span>
-                      <span class="counter big" data-target="85">0%</span>
-                  </div>
-                  <div class="progress-track">
-                      <!-- Barra con gradiente y glow -->
-                      <div class="progress-fill success" style="--w: 85%;"></div>
-                  </div>
-                  <small style="color:var(--verde); font-weight:bold; margin-top:10px; display:block; text-align:right;">
-                      <i class="fas fa-check-circle"></i> +65 Puntos de Mejora
-                  </small>
-              </div>
-
-          </div>
+      <div class="card-visual reveal" style="background:#fff; border-left:8px solid var(--c-verde);">
+          <i class="fas fa-route icon-lg" style="color:var(--c-verde);"></i>
+          <h3 class="text-h3" style="color:var(--c-verde);">Ruta Implementable</h3>
+          <p class="text-body">Plan de acción, no solo teoría.</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- 9. CIERRE -->
-  <section data-index="8">
-    <h2>Conclusiones</h2>
-    <div class="grid">
-      <div class="reveal-text">
-          <ul>
-              <li><strong>De Gasto a Inversión:</strong> Cambio de paradigma en la visión de la tecnología.</li>
-              <li><strong>Institucionalidad:</strong> Creación de comités que perduran tras cambios de gobierno.</li>
-              <li><strong>Futuro:</strong> Cimientos sólidos para Smart Cities.</li>
-          </ul>
+  <!-- 10. CONCLUSIONES -->
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Conclusiones</h2>
+    <div class="grid-2">
+      <div class="reveal">
+         <ul class="list-custom">
+             <li>Se diseñó un sistema <strong>integrador</strong> para entes territoriales.</li>
+             <li>La validación evidencia <strong>aplicabilidad y pertinencia</strong>.</li>
+             <li>La Arquitectura y el Gobierno TI habilitan <strong>alineación y control</strong>.</li>
+             <li>El <strong>enfoque ciudadano</strong> orienta prioridades y valor.</li>
+         </ul>
       </div>
-      <div class="visual-container reveal-text" style="border:none; box-shadow:none; background:transparent;">
-          <h1 style="font-size:7rem; color:var(--negro);">FIN</h1>
-          <div style="width:60px; height:5px; background:var(--rojo); margin:20px auto;"></div>
-          <p style="font-family:'Playfair Display'; font-style:italic;">Gracias por su atención</p>
+      <div class="reveal" style="text-align:center;">
+          <h1 style="font-size:6rem; margin:0; line-height:1;">FIN</h1>
+          <div class="divider" style="margin: 1rem auto;"></div>
+          <p class="font-serif font-italic">Gracias por su atención</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- NAV -->
+  <!-- 11. REFERENCIAS -->
+  <div class="slide">
+    <h2 class="text-h2 font-serif">Referencias Base</h2>
+    <div class="reveal" style="column-count: 2; column-gap: 3rem;">
+        <p class="text-body text-sm">Autores y marcos citados sobre transformación digital y cambio organizacional.</p>
+        <p class="text-body text-sm">Estándares de Gobierno y Gestión TI (COBIT, ITIL, ISO).</p>
+        <p class="text-body text-sm">Marcos de Arquitectura Empresarial (TOGAF).</p>
+        <p class="text-body text-sm">Referentes nacionales y normativa aplicable al sector público colombiano (MINTIC).</p>
+    </div>
+  </div>
+
+  <!-- CONTROLES GLOBALES -->
   <div class="controls">
-    <button class="btn-nav" id="prevBtn" aria-label="Anterior"><i class="fas fa-arrow-left"></i></button>
-    <div id="slide-counter">1 / 9</div>
-    <button class="btn-nav" id="nextBtn" aria-label="Siguiente"><i class="fas fa-arrow-right"></i></button>
+    <button class="btn-nav" id="prevBtn" aria-label="Diapositiva Anterior"><i class="fas fa-arrow-left"></i></button>
+    <!-- aria-live="polite" informa al lector de pantalla cuando cambia el número -->
+    <div id="slide-counter" aria-live="polite">1 / 11</div>
+    <button class="btn-nav" id="nextBtn" aria-label="Siguiente Diapositiva"><i class="fas fa-arrow-right"></i></button>
   </div>
 
 </div>
 
+<!-- =======================================================
+     LÓGICA JAVASCRIPT
+     ======================================================= -->
 <script>
-  // --- LÓGICA DE DIAPOSITIVAS ---
-  const slides = document.querySelectorAll('section');
-  const progressBar = document.getElementById('progressBar');
-  const counter = document.getElementById('slide-counter');
-  let currentSlide = 0;
-
-  function updateSlide() {
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[currentSlide].classList.add('active');
-    
-    // Barra de Progreso
-    const progress = ((currentSlide + 1) / slides.length) * 100;
-    progressBar.style.width = `${progress}%`;
-    counter.textContent = `${currentSlide + 1} / ${slides.length}`;
-
-    // Activar animación en diapositivas con métricas
-    if(currentSlide === 7 || currentSlide === 2) {
-        animateCounters();
-    }
-  }
-
-  // --- ANIMACIÓN DE NÚMEROS (COUNT UP) ---
-  function animateCounters() {
-      // Reiniciar contadores visualmente antes de animar
-      document.querySelectorAll('.active .counter').forEach(c => c.innerText = '0%');
-      
-      setTimeout(() => {
-          const counters = document.querySelectorAll('.active .counter');
-          counters.forEach(counter => {
-              const target = +counter.getAttribute('data-target');
-              const speed = 40; 
-              
-              const updateCount = () => {
-                  const count = +counter.innerText.replace('%', '');
-                  const inc = target / speed; 
-                  
-                  if(count < target) {
-                      counter.innerText = Math.ceil(count + inc) + "%";
-                      setTimeout(updateCount, 20);
-                  } else {
-                      counter.innerText = target + "%";
-                  }
-              };
-              updateCount();
-          });
-      }, 500); 
-  }
-
-  // --- BOTONES DE NAVEGACIÓN ---
-  document.getElementById('nextBtn').onclick = () => {
-    if(currentSlide < slides.length - 1) { currentSlide++; updateSlide(); }
+  // ESTADO DE LA APLICACIÓN
+  // Mantenemos las variables en un objeto 'state' para orden y evitar contaminar el scope global
+  const state = {
+    current: 0, // Índice actual
+    slides: document.querySelectorAll('.slide'), // Cache de elementos DOM
+    total: 0
   };
-  document.getElementById('prevBtn').onclick = () => {
-    if(currentSlide > 0) { currentSlide--; updateSlide(); }
+  state.total = state.slides.length;
+
+  // REFERENCIAS DOM (UI)
+  // Guardamos referencias a los elementos que vamos a manipular
+  const ui = {
+    bar: document.getElementById('progressBar'),
+    counter: document.getElementById('slide-counter'),
+    app: document.getElementById('app')
   };
-  
-  // Teclado
-  document.addEventListener('keydown', (e) => {
-    // Si sidebar está abierto, ESC para cerrar
-    if(document.querySelector('.sidebar.open')) {
-        if(e.key === 'Escape') closeSidebarAll();
-        return;
-    }
+
+  // --- FUNCIÓN PRINCIPAL: Actualizar Diapositiva ---
+  const updateSlide = () => {
+    // 1. Alternar clase 'active' para mostrar/ocultar y disparar animaciones CSS
+    state.slides.forEach((s, i) => {
+        s.classList.toggle('active', i === state.current);
+    });
+
+    // 2. Calcular progreso (Porcentaje)
+    const progress = ((state.current + 1) / state.total) * 100;
     
-    switch(e.key) {
-        case 'ArrowRight':
-        case ' ': // Espacio
-            document.getElementById('nextBtn').click();
-            break;
-        case 'ArrowLeft':
-            document.getElementById('prevBtn').click();
-            break;
-        case 'Home': // Inicio
-            currentSlide = 0; updateSlide();
-            break;
-        case 'End': // Fin
-            currentSlide = slides.length - 1; updateSlide();
-            break;
-    }
+    // 3. Actualizar UI (Barra y Contador)
+    ui.bar.style.width = `${progress}%`;
+    ui.counter.textContent = `${state.current + 1} / ${state.total}`;
+  };
+
+  // --- NAVEGACIÓN ---
+  const nextSlide = () => { if(state.current < state.total - 1) { state.current++; updateSlide(); } };
+  const prevSlide = () => { if(state.current > 0) { state.current--; updateSlide(); } };
+
+  // --- DELEGACIÓN DE EVENTOS (OPTIMIZACIÓN DE MEMORIA) ---
+  // En lugar de añadir un listener a cada botón, escuchamos clics en todo el documento
+  // y verificamos si el clic vino de un botón que nos interesa.
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('button') || e.target; // Busca el botón más cercano si se hizo clic en el icono
+    
+    if (target.id === 'nextBtn') nextSlide();
+    if (target.id === 'prevBtn') prevSlide();
   });
 
-  // --- GESTOS DE SWIPE (TÁCTIL Y MOUSE) ---
-  let touchStartX = 0;
-  let touchEndX = 0;
-  const container = document.getElementById('presentation-container');
+  // --- NAVEGACIÓN POR TECLADO ---
+  document.addEventListener('keydown', (e) => {
+    // Soporte para flechas, espacio y enter
+    if(['ArrowRight', ' ', 'Enter'].includes(e.key)) nextSlide();
+    if(['ArrowLeft', 'Backspace'].includes(e.key)) prevSlide();
+  });
 
-  // Eventos Táctiles
-  container.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
-  container.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
+  // --- GESTOS TÁCTILES (SWIPE) ---
+  let touchX = 0;
+  // 'passive: true' mejora el rendimiento del scroll en móviles
+  ui.app.addEventListener('touchstart', e => touchX = e.changedTouches[0].screenX, {passive: true});
+  ui.app.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].screenX - touchX;
+      // Umbral de 50px para considerar que fue un gesto intencional
+      if (Math.abs(diff) > 50) diff < 0 ? nextSlide() : prevSlide();
   }, {passive: true});
 
-  // Eventos Mouse (para probar en desktop arrastrando)
-  container.addEventListener('mousedown', e => touchStartX = e.screenX);
-  container.addEventListener('mouseup', e => {
-      touchEndX = e.screenX;
-      handleSwipe();
-  });
-
-  function handleSwipe() {
-      // Umbral mínimo de 50px para considerar swipe
-      if (touchEndX < touchStartX - 50) document.getElementById('nextBtn').click(); // Izquierda -> Siguiente
-      if (touchEndX > touchStartX + 50) document.getElementById('prevBtn').click(); // Derecha -> Anterior
-  }
-
-  // --- LOGICA DE SIDEBAR (BARRAS LATERALES) ---
-  function openSidebar(id) { 
-      document.getElementById('sidebar-'+id).classList.add('open'); 
-      document.getElementById('overlay-'+id).style.display = 'block';
-  }
-  function closeSidebar(id) { 
-      document.getElementById('sidebar-'+id).classList.remove('open'); 
-      document.getElementById('overlay-'+id).style.display = 'none';
-  }
-  function closeSidebarAll() {
-      document.querySelectorAll('.sidebar').forEach(s => s.classList.remove('open'));
-      document.querySelectorAll('.sidebar-overlay').forEach(o => o.style.display = 'none');
-  }
-
-  // --- INICIALIZAR ---
+  // INICIALIZACIÓN
   updateSlide();
 </script>
 
