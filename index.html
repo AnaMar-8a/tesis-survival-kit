@@ -6,63 +6,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Presentación de Tesis de Maestría en Gobierno de TI - Uninorte">
 
-<!-- =========================================
-     FUENTES Y RECURSOS EXTERNOS
-     ========================================= -->
-<!-- Preconexión para optimizar la carga de fuentes -->
+<!-- --- FUENTES & ICONOS --- -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Fuentes: Source Serif 4 (Títulos) y Source Sans 3 (Cuerpo) -->
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet">
-<!-- Iconos: FontAwesome (Versión CDN estable) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 /* =========================================
-   1. VARIABLES DE DISEÑO (Design System)
+   1. SISTEMA DE DISEÑO
    ========================================= */
 :root {
-  /* --- COLORES CORPORATIVOS Y TEMÁTICOS --- */
-  --accent-uninorte: #C4122F;  /* Rojo Institucional */
-  --green-deep:      #1F3B37;  /* Verde Oscuro (Elegancia/Seriedad) */
-  --green-mid:       #3E7C74;  /* Verde Medio (Elementos UI) */
-  --green-soft:      #6F9E96;  /* Verde Claro (Fondos sutiles) */
+  /* --- PALETA CROMÁTICA --- */
+  --accent-uninorte: #C4122F;  
+  --green-deep:      #1F3B37;  
+  --green-mid:       #3E7C74;  
+  --green-soft:      #6F9E96;  
   
-  /* --- COLORES NEUTROS --- */
-  --bg-main:         #FFFFFF;  /* Fondo de diapositiva */
-  --bg-panel:        #F5F6F6;  /* Fondo de tarjetas */
-  --text-main:       #121212;  /* Texto principal */
-  --text-muted:      #4A4A4A;  /* Texto secundario */
-  --line-soft:       rgba(0,0,0,.14); /* Líneas divisoras */
+  --bg-main:         #FFFFFF;  
+  --bg-panel:        #F5F6F6;  
+  
+  --text-main:       #121212;  
+  --text-muted:      #4A4A4A;
+  --line-soft:       rgba(0,0,0,.14); 
 
   /* --- TIPOGRAFÍA --- */
   --font-title: "Source Serif 4", serif;
-  --font-body:  "Source Sans 3", sans-serif;
+  --font-body:  "Source Sans 3", system-ui, -apple-system, sans-serif;
 
-  /* --- ESPACIADO Y BORDES --- */
+  /* --- ESPACIADO Y FORMAS --- */
   --radius:   24px; 
   --space-lg: 50px; 
   --space-md: 25px; 
   --space-sm: 12px; 
 
-  /* --- ANIMACIONES (Curvas de Bézier) --- */
+  /* --- ANIMACIONES --- */
   --trans-slide:  0.6s cubic-bezier(0.22, 1, 0.36, 1);
   --trans-ui:     0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* =========================================
-   2. CONFIGURACIÓN BASE
+   2. BASE
    ========================================= */
 body {
   margin: 0;
   font-family: var(--font-body);
-  background-color: #d8d8d8; /* Fondo gris detrás del "papel" */
+  background-color: #d8d8d8; 
   color: var(--text-main);
-  overflow: hidden; /* Evita el scroll del navegador */
+  overflow: hidden; 
   font-size: 17px; 
 }
 
-/* Accesibilidad: Indicador de foco visible */
 *:focus-visible {
     outline: 3px solid var(--accent-uninorte);
     outline-offset: 4px;
@@ -75,53 +69,46 @@ body {
   background-color: #dcdcdc; 
 }
 
-/* Textura de ruido para evitar bandas de color (Dithering) */
 .noise-bg {
     position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: 0.025;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* =========================================
-   3. ESTRUCTURA DE DIAPOSITIVAS
+   3. SLIDES
    ========================================= */
 section.slide {
-  display: none; /* Ocultas por defecto */
+  display: none;
   position: absolute;
   width: 90%; height: 85%; max-width: 1600px;
   background: var(--bg-main);
   padding: var(--space-lg);
   box-sizing: border-box;
-  opacity: 0; /* Transparente al inicio para animar entrada */
+  opacity: 0;
   
-  /* Estilo Tarjeta Flotante */
   border-radius: var(--radius);
   box-shadow: 0 25px 50px rgba(0,0,0,0.12);
   border-top: 6px solid var(--accent-uninorte);
   
-  /* Scroll interno si el contenido es muy largo */
   overflow-y: auto; 
   scrollbar-width: thin; 
   scrollbar-color: var(--green-mid) #f0f0f0;
   
-  /* Estado inicial de animación (Desplazado abajo) */
   transform: translate3d(0, 30px, 0); 
   transition: opacity var(--trans-slide), transform var(--trans-slide);
   z-index: 1;
 }
 
-/* Scrollbar personalizada para Webkit */
 section.slide::-webkit-scrollbar { width: 6px; }
 section.slide::-webkit-scrollbar-track { background: #f0f0f0; }
 section.slide::-webkit-scrollbar-thumb { background-color: var(--green-mid); border-radius: 10px; }
 
-/* ESTADO ACTIVO: Visible y en posición */
 section.slide.active {
   display: flex; flex-direction: column; justify-content: center; 
   opacity: 1; z-index: 2;
   transform: translate3d(0, 0, 0);
 }
 
-/* Permitir que el contenido fluya desde arriba si es mucho */
 section.slide.active.overflowing { justify-content: flex-start; }
 
 /* =========================================
@@ -143,7 +130,6 @@ h1, h2 {
     font-size: 2.5rem; margin-bottom: var(--space-lg);
     position: relative; display: inline-block;
 }
-/* Línea decorativa bajo H2 */
 .text-h2::after {
     content: ''; display: block; width: 60px; height: 4px; 
     background: var(--green-mid); margin-top: 12px; border-radius: 2px;
@@ -168,16 +154,15 @@ h1, h2 {
 .color-muted  { color: var(--text-muted); }
 
 /* =========================================
-   5. COMPONENTES DE UI
+   5. LAYOUTS Y COMPONENTES
    ========================================= */
-/* Grillas Responsivas */
 .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-lg); align-items: center; height: 100%; width: 100%; }
 .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); width: 100%; }
 .flex-col { display: flex; flex-direction: column; width: 100%; }
 .flex-row { display: flex; align-items: center; gap: var(--space-md); }
 .mt-lg { margin-top: var(--space-lg); }
 
-/* Contenedor de Imágenes con Fallback */
+/* --- COMPONENTES --- */
 .img-wrapper {
     width: 100%; height: 100%; min-height: 350px; 
     border-radius: var(--radius); overflow: hidden; position: relative;
@@ -197,7 +182,6 @@ h1, h2 {
     background: var(--bg-panel); z-index: 0; text-align: center; padding: 20px;
 }
 
-/* Overlays para texto sobre imagen */
 .scrim {
     position: absolute; inset: 0;
     background: linear-gradient(135deg, var(--green-deep) 0%, rgba(31, 59, 55, 0.9) 100%);
@@ -209,7 +193,6 @@ h1, h2 {
     display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
 
-/* Tarjetas de Texto Destacadas */
 .card-highlight {
     background: var(--bg-main); padding: var(--space-md); margin-bottom: var(--space-sm);
     border-left: 4px solid var(--accent-uninorte);
@@ -219,7 +202,6 @@ h1, h2 {
 
 .divider { width: 100%; height: 1px; background: var(--line-soft); margin: var(--space-md) 0; }
 
-/* Listas Personalizadas */
 .list-custom li { 
     list-style: none; position: relative; padding-left: 28px; margin-bottom: var(--space-sm); 
     font-size: 1.35rem; font-weight: 400; color: var(--text-main);
@@ -230,7 +212,7 @@ h1, h2 {
 }
 .list-custom li:hover::before { transform: scale(1.4); background: var(--accent-uninorte); }
 
-/* --- TABLA "WOW" (Slide 8) --- */
+/* --- TABLA FACTOR WOW --- */
 .table-container { width: 100%; }
 .wow-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
 
@@ -262,21 +244,20 @@ h1, h2 {
 }
 .dim-text { font-size: 1rem; font-weight: 500; color: var(--text-main); line-height: 1.3; }
 
-/* Barras de Progreso "Energía" */
+/* Barras Energía */
 .level-container { display: flex; align-items: center; gap: 15px; width: 100%; max-width: 180px; }
 .level-num { font-weight: 700; color: var(--text-main); width: 15px; font-size: 0.9rem; }
 .progress-track { flex-grow: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
 .progress-fill { height: 100%; border-radius: 4px; width: 0; transition: width 0.5s; }
 
-/* Colores Semáforo con Glow */
 .fill-1 { background: #E33E33; box-shadow: 0 0 10px rgba(227, 62, 51, 0.6); }
 .fill-2 { background: #FFC107; box-shadow: 0 0 10px rgba(255, 193, 7, 0.6); }
 .fill-3 { background: #2E7D32; box-shadow: 0 0 10px rgba(46, 125, 50, 0.5); }
 
-/* --- BENTO GRID (Slide 10) --- */
+/* --- BENTO GRID --- */
 .bento-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2 Columnas */
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto auto;
     gap: 20px; width: 100%; padding-bottom: 20px;
 }
@@ -290,7 +271,9 @@ h1, h2 {
 }
 .bento-card:hover { transform: translateY(-5px); z-index: 5; box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
 
+.span-2 { grid-column: span 1; }
 .span-full { grid-column: span 2; }
+
 .bg-deep { background: var(--green-deep); color: white; }
 .bg-accent { background: var(--accent-uninorte); color: white; }
 .bg-light { background: white; border-top: 4px solid var(--green-mid); }
@@ -298,33 +281,6 @@ h1, h2 {
 .bento-icon { font-size: 1.8rem; margin-bottom: 12px; opacity: 0.9; }
 .bento-title { font-family: var(--font-title); font-size: 1.2rem; margin-bottom: 8px; font-weight: 600; line-height: 1.2; }
 .bento-text { font-size: 0.95rem; line-height: 1.4; opacity: 0.95; }
-
-/* --- TABLERO RESULTADOS (Slide 9) --- */
-.results-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto 1fr; gap: 20px; height: 100%;
-}
-.result-card {
-    background: white; border-radius: 16px; padding: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    display: flex; flex-direction: column; position: relative; overflow: hidden;
-}
-.result-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(31, 59, 55, 0.15); z-index: 10; }
-
-.score-card {
-    grid-column: span 1; grid-row: span 2;
-    background: linear-gradient(145deg, var(--green-deep), #2a4f4a);
-    color: white; align-items: center; text-align: center; justify-content: center;
-}
-.big-score { font-size: 5rem; font-weight: 700; line-height: 1; margin: 20px 0; position: relative; display: inline-block; }
-.big-score::after { content: '/5'; font-size: 1.5rem; position: absolute; top: 10px; right: -30px; opacity: 0.6; }
-.alert-badge {
-    background: #E33E33; color: white; padding: 5px 12px;
-    border-radius: 20px; font-size: 0.85rem; font-weight: 700;
-    display: inline-block; margin-top: 5px; animation: pulse 2s infinite;
-}
-.score-detail { background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 12px; margin-top: 10px; width: 100%; }
 
 /* --- NUEVA ANIMACIÓN PROCESO (Slide 10) --- */
 .process-card { background: linear-gradient(to right, #fdfdfd, #f4f4f4); overflow: visible; }
@@ -349,6 +305,43 @@ h1, h2 {
 .slide.active .process-step:nth-child(3) .step-circle { border-color: var(--green-mid); color: var(--green-mid); transform: scale(1.1); transition-delay: 0.8s; }
 .slide.active .process-step:nth-child(4) .step-circle { border-color: var(--green-mid); background: var(--green-mid); color: white; transform: scale(1.2); transition-delay: 1.6s; }
 .slide.active .process-step:nth-child(5) .step-circle { border-color: var(--green-deep); background: var(--green-deep); color: white; transform: scale(1.1); transition-delay: 2.3s; }
+
+/* --- TABLERO RESULTADOS (Slide 9) --- */
+.results-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr; gap: 20px; height: 100%;
+}
+.result-card {
+    background: white; border-radius: 16px; padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.03);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex; flex-direction: column; position: relative; overflow: hidden;
+}
+.result-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(31, 59, 55, 0.15); z-index: 10; }
+
+.score-card {
+    grid-column: span 1; grid-row: span 2;
+    background: linear-gradient(145deg, var(--green-deep), #2a4f4a);
+    color: white; align-items: center; text-align: center; justify-content: center;
+}
+.rc-title { font-family: var(--font-title); font-size: 1.2rem; font-weight: 600; color: var(--green-deep); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.score-card .rc-title { color: rgba(255,255,255,0.9); justify-content: center; }
+.big-score { font-size: 5rem; font-weight: 700; line-height: 1; margin: 20px 0; position: relative; display: inline-block; }
+.big-score::after { content: '/5'; font-size: 1.5rem; position: absolute; top: 10px; right: -30px; opacity: 0.6; }
+.alert-badge {
+    background: #E33E33; color: white; padding: 5px 12px;
+    border-radius: 20px; font-size: 0.85rem; font-weight: 700;
+    display: inline-block; margin-top: 5px; animation: pulse 2s infinite;
+}
+.score-detail { background: rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 12px; margin-top: 10px; width: 100%; }
+.rc-body { font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); }
+.highlight-text { color: var(--accent-uninorte); font-weight: 600; }
+.steps-row { display: flex; justify-content: space-between; margin-top: auto; padding-top: 15px; }
+.step-dot {
+    width: 30px; height: 30px; background: var(--bg-panel); color: var(--green-mid);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.8rem; border: 2px solid var(--green-mid);
+}
 
 /* --- MODAL BIBLIOGRAFÍA --- */
 .modal-overlay {
@@ -404,6 +397,13 @@ h1, h2 {
 .slide.active .wow-table-row:nth-child(3) .progress-fill { animation-delay: 1.5s; }
 .slide.active .wow-table-row:nth-child(4) .progress-fill { animation-delay: 1.8s; }
 .slide.active .wow-table-row:nth-child(5) .progress-fill { animation-delay: 2.1s; }
+
+/* Delays para Bento (Slide 10) */
+.slide.active .bento-card:nth-child(1) { animation-delay: 0.2s; }
+.slide.active .bento-card:nth-child(2) { animation-delay: 0.3s; }
+.slide.active .bento-card:nth-child(3) { animation-delay: 0.4s; }
+.slide.active .bento-card:nth-child(4) { animation-delay: 0.5s; }
+.slide.active .bento-card:nth-child(5) { animation-delay: 0.6s; }
 
 @keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes growBar { from { width: 0; } to { width: var(--w); } }
@@ -609,6 +609,7 @@ h1, h2 {
       
       <div class="reveal img-wrapper" style="background:transparent; border:none;">
           <div class="img-fallback">
+              <!-- Diagrama CSS Puro como fallback -->
               <div style="width:280px; height:280px; border:4px dashed var(--green-soft); border-radius:50%; display:grid; place-items:center; position:relative;">
                   <div style="text-align:center;">
                       <i class="fas fa-arrows-spin" style="font-size:3.5rem; color:var(--green-deep); margin-bottom:12px;"></i>
@@ -961,101 +962,8 @@ h1, h2 {
               <button class="close-modal" onclick="closeModal()">&times;</button>
           </div>
           <div class="modal-body">
-              <ul class="biblio-list">
-                  <li>2023 OECD/IDB Digital Government Index of Latin America and the Caribbean: Results and key findings (OECD Public Governance Policy Papers No. 64; OECD Public Governance Policy Papers, Vol. 64). (2024). https://doi.org/10.1787/10b82c83-en</li>
-                  <li>Aguilera, R. V., & Jackson, G. (2003). The Cross-National Diversity of Corporate Governance: Dimensions and Determinants. The Academy of Management Review, 28(3), 447-465. https://doi.org/10.2307/30040732</li>
-                  <li>AXELOS. (2019a). ITIL foundation: ITIL 4 edition (First edition). TSO (The Stationery Office).</li>
-                  <li>AXELOS. (2019b). ITIL foundation: ITIL 4 edition (First edition). TSO (The Stationery Office).</li>
-                  <li>Bevin, L. (2014). The relationship between COBIT 5 and TOGAF: A practical perspective. ISACA Journal, 6(1). https://www.isaca.org/resources/isaca-journal</li>
-                  <li>Brown, D. C. G., & Toze, S. (2017). Information governance in digitized public administration. Canadian Public Administration, 60(4), 581-604. https://doi.org/10.1111/capa.12227</li>
-                  <li>BSC. (1992). Balanced Scorecard Basics. BSC. https://balancedscorecard.org/bsc-basics-overview/</li>
-                  <li>Cadbury. (1992). Report of the Committee on the Financial Aspects of Corporate Governance. Hauptw.,repr (Reprinted). Gee.</li>
-                  <li>Carrascal, E., & Garcerant, M. (2020). Modelo de gobierno de tecnologías de información para entidades territoriales de Colombia. Universidad Pontificia Bolivariana. - Buscar con Google. (2020). https://manglar.uninorte.edu.co/handle/10584/11344#page=1</li>
-                  <li>Carrascal Montoya, A., & Garcerant Torres, J. (2023). Marco de trabajo para la gestión de servicios de TI bajo un enfoque ágil, para la consecución de la Política de Gobierno Digital en sus dominios de Sistemas de Información y Servicios Tecnológicos, en entidades públicas territoriales. https://manglar.uninorte.edu.co/handle/10584/11344</li>
-                  <li>COLOMBIA. (2024). CONSTITUCIÓN POLÍTICA. http://www.secretariasenado.gov.co/constitucion-politica</li>
-                  <li>Constitución_2024. (s. f.).</li>
-                  <li>COSO-2013-Framework-WHITEPAPER-V4. (s. f.).</li>
-                  <li>David J. Teece. (2007). Explicating dynamic capabilities: The nature and microfoundations of (sustainable) enterprise performance. ResearchGate. https://www.researchgate.net/publication/227802298_Explicating_dynamic_capabilities_The_nature_and_microfoundations_of_sustainable_enterprise_performance</li>
-                  <li>Deming, W. E. (William E. (with Internet Archive). (1986). Out of the crisis. Cambridge, Mass. : Massachusetts Institute of Technology, Center for Advanced Engineering Study. http://archive.org/details/outofcrisis000demi</li>
-                  <li>DNP. (2022). Avances en Innovación Pública. https://www.dnp.gov.co:443/LaEntidad_/subdireccion-general-prospectiva-desarrollo-nacional/direccion-gobierno-ddhh-paz/Paginas/avances-en-innovacion-publica.aspx</li>
-                  <li>Función Publica. (2017). Decreto 1499 de 2017—Gestor Normativo. https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=83433</li>
-                  <li>G20/OECD Principles of Corporate Governance. (2015, noviembre 29). OECD. https://www.oecd.org/en/publications/g20-oecd-principles-of-corporate-governance-2015_9789264236882-en.html</li>
-                  <li>Hammer, M., & Champy, J. A. (1994). Reengineering the Corporation: A Manifesto for Business Revolution.</li>
-                  <li>Impacto TIC. (2023, diciembre 7). Transformación Digital en Colombia. Situación actual. Impacto TIC. https://impactotic.co/innovacion/transformacion-digital/transformacion-digital-en-colombia-implicaciones-y-perspectivas/</li>
-                  <li>ISACA. (2012). COBIT 5: Enabling Processes. ISACA.</li>
-                  <li>ISACA. (2018). COBIT 2019: Framework: Governance & Management Objectives | Digital | English—ISACA Portal. https://store.isaca.org/s/store#/store/browse/detail/a2S4w000004Ko9ZEAS</li>
-                  <li>ISACA. (2019). COBIT 2019: Framework: Governance & Management Objectives | Digital | English—ISACA Portal. https://store.isaca.org/s/store#/store/browse/detail/a2S4w000004Ko9ZEAS</li>
-                  <li>ISO/IEC 38500:2015. (2008). ISO. https://www.iso.org/standard/62816.html</li>
-                  <li>ISO/IEC 38500:2015. (2015). ISO. https://www.iso.org/standard/62816.html</li>
-                  <li>IT Governance Institute (ITGI), I. G. (2003). Board Briefing for IT Governance, 2nd Edition. Information Systems Audit and Control Association.</li>
-                  <li>Janowski, T., Pardo, T. A., & Davies, J. (2012). Erratum to “Government Information Networks—Mapping Electronic Governance cases through Public Administration concepts” [Government Information Quarterly 29S1 (2012) 1–10]. Government Information Quarterly, 29(2), 311. https://doi.org/10.1016/j.giq.2012.02.001</li>
-                  <li>John A. Zachman. (1987a). Zachman, J.: A Framework for Information Systems Architecture. IBM Systems Journal 26, 276-292. ResearchGate. https://www.researchgate.net/publication/224102348_Zachman_J_A_Framework_for_Information_Systems_Architecture_IBM_Systems_Journal_26_276-292</li>
-                  <li>John A. Zachman. (1987b). Zachman, J.: A Framework for Information Systems Architecture. IBM Systems Journal 26, 276-292. ResearchGate. https://www.researchgate.net/publication/224102348_Zachman_J_A_Framework_for_Information_Systems_Architecture_IBM_Systems_Journal_26_276-292</li>
-                  <li>Johnson, G., Scholes, K., & Whittington, R. (2008). Exploring corporate strategy (8th. ed). Prentice Hall.</li>
-                  <li>Kaplan, R. S., & Norton, D. P. (1992). The Balanced Scorecard—Measures that Drive Performance. Harvard Business Review. https://hbr.org/1992/01/the-balanced-scorecard-measures-that-drive-performance-2</li>
-                  <li>Kaplan, Robert S. & D. P. Norton. (2001). The Strategy-Focused Organization: How Balanced Scorecard Companies Thrive in the New Business Environment—Book—Faculty & Research—Harvard Business School. https://www.hbs.edu/faculty/Pages/item.aspx?num=5595</li>
-                  <li>Kaplan, Robert S. & David P. Norton. (1996). The Balanced Scorecard: Translating Strategy into Action—Book—Faculty & Research—Harvard Business School. https://www.hbs.edu/faculty/Pages/item.aspx?num=8831</li>
-                  <li>Kaplan, Robert S. & David P. Norton. (2004). Strategy Maps: Converting Intangible Assets into Tangible Outcomes—Book—Faculty & Research—Harvard Business School. https://www.hbs.edu/faculty/Pages/item.aspx?num=15760</li>
-                  <li>Kettl, D. F. (2015). The Transformation of Governance: Public Administration for the Twenty-First Century. JHU Press.</li>
-                  <li>Kotusev, S. (2021a). The practice of enterprise architecture: A modern approach to business and IT alignment. SK Publishing.</li>
-                  <li>Kotusev, S. (2021b). The Practice of Enterprise Architecture: A Modern Approach to Business and IT Alignment. SK Publishing.</li>
-                  <li>L. Janahi, M. Griffiths, & H. Al-Ammal. (2015). A conceptual model for IT governance in public sectors. 2015 Fourth International Conference on Future Generation Communication Technology (FGCT), 1-9. https://doi.org/10.1109/FGCT.2015.7300242</li>
-                  <li>La Porta, R., Lopez-De-Silanes, F., & Shleifer, A. (1999). Corporate Ownership Around the World. The Journal of Finance, 54(2), 471-517. https://doi.org/10.1111/0022-1082.00115</li>
-                  <li>Lankhorst, M. (2017a). Enterprise architecture at work: Modelling, communication and analysis (4.a ed.). Springer.</li>
-                  <li>Lankhorst, M. (2017b). Enterprise Architecture at Work: Modelling, Communication and Analysis (4.a ed.). Springer.</li>
-                  <li>Mark H. Moore. (1998). Creating Public Value. Harvard University Press. https://www.hup.harvard.edu/books/9780674175587</li>
-                  <li>Marulanda Ecehevrry, López Trujillo, & Cuesta Iglesias. (2009). Modelos de desarrollo para gobierno TI. Scientia Et Technica. https://doi.org/10.22517/23447214.2879</li>
-                  <li>MARULANDA ECHEVERRY, C. E., LÓPEZ TRUJILLO, M., & VALENCIA DUQUE, F. J. (2017). GOBIERNO Y GESTIÓN DE TI EN LAS ENTIDADES PÚBLICAS. AD-minister, 31, 75-92. Redalyc. https://www.redalyc.org/articulo.oa?id=322353489005</li>
-                  <li>Mauricio Gonzalez & Liliana Gonzalez. (2015). La co-creación como estrategia para abordar la gobernanza de TI en una organización. RISTI - Revista Ibérica de Sistemas e Tecnologias de Informação, 15, 1-16. https://doi.org/10.17013/risti.15.1-16</li>
-                  <li>McMillan, J. (2013). Integrating TOGAF and Zachman for superior enterprise architecture. https://www.businessofgovernment.org</li>
-                  <li>MinCiencias. (2021). Guía para la gestión del riesgo. Ministerio de Ciencia, Tecnología e Innovación.</li>
-                  <li>MinTIC. (s. f.). MINTIC Colombia. MINTIC Colombia. Recuperado 21 de noviembre de 2025, de https://www.mintic.gov.co/portal/715/w3-channel.html</li>
-                  <li>MinTIC. (2017a). CULTURA DE INNOVACIÓN EN LAS ENTIDADES PÚBLICAS. https://gobiernodigital.mintic.gov.co/692/articles-210484_recurso_1.pdf</li>
-                  <li>MinTIC. (2017b). Modelo de Cultura de Innovación Pública. /https://gobiernodigital.mintic.gov.co/692/articles-210484_recurso_1.pdf</li>
-                  <li>MinTIC. (2017c). Modelo de Cultura de Innovación Pública. /https://gobiernodigital.mintic.gov.co/692/articles-210484_recurso_1.pdf</li>
-                  <li>MinTIC. (2018a). Manual de Gobierno Digital. https://gobiernodigital.mintic.gov.co/692/channels-594_manual_gd.pdf</li>
-                  <li>MinTIC. (2018b). Manual de Gobierno Digital. https://gobiernodigital.mintic.gov.co/692/channels-594_manual_gd.pdf</li>
-                  <li>MinTIC. (2020). MARCO DE LA TRANSFORMACIÓN DIGITAL PARA EL ESTADO COLOMBIANO. https://gobiernodigital.mintic.gov.co/692/articles-179145_Marco_Transformacion_Digital.pdf</li>
-                  <li>MinTIC. (2022a). Marco de Arquitectura Empresarial. https://gobiernodigital.mintic.gov.co/portal/Iniciativas/Marco-de-Arquitectura-Empresarial/</li>
-                  <li>MinTIC. (2022b). Modelo de medición de madurez de ciudades y territorios inteligentes para Colombia—MINTIC. 2022. https://gobiernodigital.mintic.gov.co/692/articles-179102_recurso_2.pdf</li>
-                  <li>MinTIC. (2022c). Modelo de medición de madurez de ciudades y territorios inteligentes para Colombia—MINTIC. 2022. https://gobiernodigital.mintic.gov.co/692/articles-179102_recurso_2.pdf</li>
-                  <li>MinTIC. (2022d). Plan Estratégico de Tecnologías de Información (PETI) de MinTIC 2023—2026.</li>
-                  <li>MinTIC. (2023a). Estrategia nacional digital de colombia 2023- 2026.</li>
-                  <li>MinTIC. (2023b). Indice brecha digital resultados 2022. https://colombiatic.mintic.gov.co/679/articles-333029_presentacion.pdf</li>
-                  <li>MinTIC. (2023c). Indices de ciudades y territorios inteligentes 2023. https://gobiernodigital.mintic.gov.co/692/articles-334743_Indice_CTI_2023.pdf</li>
-                  <li>MinTIC. (2023d). Modelo de Gestión y Gobierno TI (MGGTI)—Arquitectura TI. https://www.mintic.gov.co/arquitecturaempresarial/630/w3-propertyvalue-385306.html?__noredirect=1</li>
-                  <li>MinTIC. (2024). Resultados y documentación sobre el ecosistema digital y la implementación de la Política de Gobierno Digital en Colombia y en el mundo. https://gobiernodigital.mintic.gov.co/portal/Mediciones/</li>
-                  <li>MinTIC. (3023). Política de Seguridad Digital—Política de Seguridad Digital. MINTIC Colombia. https://www.mintic.gov.co/portal/715/w3-article-15430.html</li>
-                  <li>Mintzberg H. (1994). The Fall and Rise of Strategic Planning. Scribd. https://www.scribd.com/document/678994705/Mintzberg-H-1994-the-Fall-and-Rise-of-Strategic-Planning-1-1</li>
-                  <li>Morales Villa, L. R., Pinilla Saavedra, C. C., Reyes C., N. M., & Miranda Arandia, N. Y. (2024). Evaluación de la Madurez Digital en los Sistemas de Gestión de los Municipios en Colombia. Ciencia Latina Revista Científica Multidisciplinar, 7(6), 4763-4790. https://doi.org/10.37811/cl_rcm.v7i6.9035</li>
-                  <li>Muñoz Periñán, I. L., & Ulloa Villegas, G. (2011). Gobierno de TI – Estado del arte. Sistemas & Telemática, 9(17), 23-53. Redalyc. https://www.redalyc.org/articulo.oa?id=411534384003</li>
-                  <li>OCDE. (2019, noviembre 27). The Path to Becoming a Data-Driven Public Sector. https://www.oecd.org/en/publications/the-path-to-becoming-a-data-driven-public-sector_059814a7-en.html</li>
-                  <li>OCDE. (2022). Informe de Competitividad. https://2022.dnp.gov.co:443/Paginas/Colombia-mejora-en-competitividad-segun-empresarios.aspx?utm_source=chatgpt.com</li>
-                  <li>OECD. (2014). OECD Legal Instruments. https://legalinstruments.oecd.org/en/instruments/OECD-LEGAL-0406</li>
-                  <li>OECD. (2020). OECD Digital Economy Outlook 2020. OECD Publishing. https://doi.org/10.1787/bb167041-en</li>
-                  <li>PMI. (s. f.). PMBOK Guide | Project Management Institute. Recuperado 21 de noviembre de 2025, de https://www.pmi.org/standards/pmbok</li>
-                  <li>Prasca Aya, C. J., & Suárez Iguarán, A. M. (2019a). Modelo de gobierno y gestión de TI para desplegar la política de gobierno digital en las entidades tipo gobernación caso de estudio: Gobernación del Atlántico. https://manglar.uninorte.edu.co/handle/10584/10156</li>
-                  <li>Prasca Aya, C. J., & Suárez Iguarán, A. M. (2019b). Modelo de gobierno y gestión de TI para desplegar la política de gobierno digital en las entidades tipo gobernación caso de estudio: Gobernación del Atlántico. https://manglar.uninorte.edu.co/handle/10584/10156</li>
-                  <li>Rogers, D. L. (2023). The digital transformation roadmap: Rebuild your organization for continuous change. Columbia University Press. https://doi.org/10.7312/roge19658</li>
-                  <li>Salazar Saavedra, C. A., & Vela Londoño, É. (2012). Gobierno de TI en Colombia. Documentación y modelado de procesos que soportan el gobierno y la gestión de las tecnologías de la informaciónGobierno de TI en Colombia. [ICESI]. https://repository.icesi.edu.co/biblioteca_digital/bitstream/10906/70652/1/gobierno_ti_colombia.pdf</li>
-                  <li>Santini, J. F., Capurro, F. S., Rogger, D., Lundy, T., Kim, G., Miranda, J. de L., Cocciolo, S., & Casanova, C. (2024a). Data for Better Governance. 2024, 132.</li>
-                  <li>Santini, J. F., Capurro, F. S., Rogger, D., Lundy, T., Kim, G., Miranda, J. de L., Cocciolo, S., & Casanova, C. (2024b). Data for Better Governance. 2024, 132.</li>
-                  <li>Sarwar, B., Sarwar, M., Al-Rahmi, W., Almogren, A., Salloum, S., & Habes, M. (2023). Social media paradox: Utilizing social media technology for creating better value for better social outcomes: Case of developing countries. Cogent Business & Management, 10. https://doi.org/10.1080/23311975.2023.2210888</li>
-                  <li>Scupola, A., & Zanfei, A. (2016). Governance and innovation in public sector services: The case of the digital library. Government Information Quarterly, 33(2), 237-249. https://doi.org/10.1016/j.giq.2016.04.005</li>
-                  <li>Selig, G. (2008a). Implementing IT Governance: A Practical Guide to Global Best Practices in IT Management. 2008. https://www.academia.edu/75530841/Implementing_IT_Governance_A_Practical_Guide_to_Global_Best_Practices_in_IT_Management</li>
-                  <li>Selig, G. (2008b). Implementing IT Governance: A Practical Guide to Global Best Practices in IT Management. 2008. https://www.academia.edu/75530841/Implementing_IT_Governance_A_Practical_Guide_to_Global_Best_Practices_in_IT_Management</li>
-                  <li>Servicio Civil. (2022). Guía técnica para la gestión del cambio organizacional | DASCD. https://www.serviciocivil.gov.co/node/50516?utm_source=chatgpt.com</li>
-                  <li>Temitope, T. (2023). Investigating Innovative Models of Governance and Collaboration for Effective Public Administration in a Multi-Stakeholder Landscape. International Journal Papier Public Review, 4, 18-28. https://doi.org/10.47667/ijppr.v4i2.209</li>
-                  <li>The Open Group. (2022). The TOGAF® Standard, 10th Edition—Introduction and Core Concepts. https://www.leanix.net/en/wiki/ea/togaf</li>
-                  <li>Tonelli, A. O., de Souza Bermejo, P. H., Aparecida dos Santos, P., Zuppo, L., & Zambalde, A. L. (2017). It governance in the public sector: A conceptual model. Information Systems Frontiers, 19(3), 593-610. https://doi.org/10.1007/s10796-015-9614-x</li>
-                  <li>Tricker, R. I. (2015). Corporate Governance: Principles, Policies, and Practices. Oxford University Press.</li>
-                  <li>Universidad Nacional de Colombia sede Manizales Universidad de Caldas, Marulanda Echeverry, C. E., López Trujillo, M., Universidad Nacional de Colombia sede Manizales, Valencia Duque, F. J., & Universidad Nacional de Colombia sede Manizales. (2017). Gobierno y gestión de ti en las entidades públicas. AD-minister, 31, 75-92. https://doi.org/10.17230/ad-minister.31.5</li>
-                  <li>Van Haren. (2008). Implementing it Governance: A Practical Guide to Global Best Practices in it Management (Best Practi De Gad J. Selig—Buscalibre. https://www.buscalibre.com.co/libro-implementing-it-governance-a-practical-guide-to-global-best-practices-in-it-management-best-practice-van-haren-publishing/9789087531195/p/2691471</li>
-                  <li>Velásquez Pérez, Torcoroma, & Puentes Velásquez, Andrés Mauricio. (2016). Un enfoque de buenas prácticas de gobierno corporativo de TI. Tecnura, 19. https://revistas.udistrital.edu.co/index.php/Tecnura/article/view/10383</li>
-                  <li>Weill, P., & Ross, J. W. (2004a). IT Governance: How Top Performers Manage IT Decision Rights for Superior Results. Harvard Business Press.</li>
-                  <li>Weill, P., & Ross, J. W. (2004b). IT Governance: How Top Performers Manage IT Decision Rights for Superior Results. Harvard Business Press.</li>
-                  <li>Wim Van Grembergen & Steven De Haes. (2009a). Enterprise Governance of Information Technology: Achieving Strategic Alignment and Value | SpringerLink. https://link.springer.com/book/10.1007/978-0-387-84882-2</li>
-                  <li>Wim Van Grembergen & Steven De Haes. (2009b). Enterprise Governance of Information Technology: Achieving Strategic Alignment and Value | SpringerLink. https://link.springer.com/book/10.1007/978-0-387-84882-2</li>
+              <ul class="biblio-list" id="biblio-list-container">
+                  <!-- Se llenará dinámicamente -->
               </ul>
           </div>
       </div>
@@ -1083,6 +991,20 @@ document.addEventListener('DOMContentLoaded', () => {
     app: document.getElementById('app') 
   };
   const total = state.slides.length;
+
+  // --- FUNCIÓN PARA CARGAR BIBLIOGRAFÍA ---
+  const loadBibliography = async () => {
+    try {
+        const response = await fetch('bibliography.json');
+        const data = await response.json();
+        const container = document.getElementById('biblio-list-container');
+        
+        container.innerHTML = data.map(item => `<li>${item.ref}</li>`).join('');
+    } catch (error) {
+        console.warn("No se pudo cargar el JSON externo. Usando datos de respaldo.");
+        document.getElementById('biblio-list-container').innerHTML = `<li>Error al cargar la bibliografía. Asegúrese de que bibliography.json está en la misma carpeta.</li>`;
+    }
+  };
 
   // Actualizar vista
   const updateSlide = () => {
@@ -1141,6 +1063,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Inicializar
   updateSlide();
+  loadBibliography(); // Cargar bibliografía externa
 });
 </script>
 
