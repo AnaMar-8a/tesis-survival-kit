@@ -97,6 +97,8 @@ section.slide.active {
   opacity: 1; z-index: 2; transform: translate3d(0, 0, 0);
 }
 
+section.slide.active.overflowing { justify-content: flex-start; }
+
 /* =========================================
    4. TIPOGRAFÍA Y COMPONENTES UI
    ========================================= */
@@ -438,7 +440,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
     <div class="flex-col" style="height:100%;">
       <div class="reveal" style="border:1px solid var(--green-deep); padding:20px; margin-bottom: 20px; border-radius: var(--radius);">
         <span style="position:absolute; top:-14px; left:24px; background:var(--bg-main); padding:0 10px; font-weight:700; color:var(--accent-uninorte); font-size:0.9rem; letter-spacing:1px;">OBJETIVO GENERAL</span>
-        <p style="font-family:var(--font-title); font-size:1.4rem; line-height:1.4; margin:0; color:var(--green-deep);">
+        <p style="font-family:var(--font-title); font-size:1.45rem; line-height:1.4; margin:0; color:var(--green-deep);">
             Diseñar un sistema para la gobernanza y gestión integral de las tecnologías de la Información para los entes territoriales que sirva como Impulsor para la transformación digital, el desarrollo de la arquitectura empresarial y alineada con los estándares internacionales y la regulación en Colombia.
         </p>
       </div>
@@ -466,35 +468,58 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
   <!-- 6. MARCO TEÓRICO -->
   <section class="slide">
     <h2 class="text-h2">Marco Teórico</h2>
-    <div class="grid-2">
-      <div class="reveal">
-        <div style="margin-bottom: 20px;">
-            <h3 class="text-h3 color-accent">Gobierno de TI (EDM)</h3>
-            <p class="text-body">Asegura valor, control y alineación. <br><em class="color-muted">Evaluar, Dirigir, Monitorear.</em></p>
-        </div>
-        <div style="margin-bottom: 20px;">
-            <h3 class="text-h3" style="color:var(--green-deep);">Gestión de TI (PBRM)</h3>
-            <p class="text-body">Convierte dirección en capacidades. <br><em class="color-muted">Planear, Construir, Operar, Monitorear.</em></p>
-        </div>
-         <div>
-            <h3 class="text-h3" style="color:var(--green-mid);">Gestión Corporativa</h3>
-            <p class="text-body">Ejecuta estrategia mediante recursos y procesos.</p>
-        </div>
+    <div class="grid-2" style="align-items: start;">
+      <div class="reveal table-container">
+          <table class="wow-table" style="font-size: 0.85rem;">
+            <thead>
+              <tr>
+                <th style="width: 35%;">Autor / Entidad</th>
+                <th>Aporte clave</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="wow-table-row">
+                <td style="font-weight: 700; color: var(--green-deep);">Rogers (2023)</td>
+                <td>DX = cambio estratégico continuo; hoja de ruta en 5 pasos.</td>
+              </tr>
+              <tr class="wow-table-row">
+                <td style="font-weight: 700; color: var(--green-deep);">Selig (2008a, b)</td>
+                <td>Gobierno de TI como viaje de madurez con liderazgo y métricas.</td>
+              </tr>
+              <tr class="wow-table-row">
+                <td style="font-weight: 700; color: var(--green-deep);">Weill & Ross (2004)</td>
+                <td>Gobierno TI = derechos de decisión + rendición de cuentas.</td>
+              </tr>
+              <tr class="wow-table-row">
+                <td style="font-weight: 700; color: var(--green-deep);">ISO/IEC 38500</td>
+                <td>Gobierno corporativo TI: Evaluate–Direct–Monitor (EDM).</td>
+              </tr>
+              <tr class="wow-table-row">
+                <td style="font-weight: 700; color: var(--green-deep);">COBIT 2019</td>
+                <td>Distingue EDM (gobierno) vs Gestión (APO/BAI/DSS/MEA).</td>
+              </tr>
+              <tr class="wow-table-row">
+                <td style="font-weight: 700; color: var(--green-deep);">MinTIC (Colombia)</td>
+                <td>Marcos públicos para operacionalizar TI (IT4+, MGGTI).</td>
+              </tr>
+              <tr class="wow-table-row">
+                <td style="font-weight: 700; color: var(--green-deep);">Kaplan & Norton</td>
+                <td>Mapas estratégicos + BSC adaptados a valor público.</td>
+              </tr>
+              <tr class="wow-table-row">
+                <td style="font-weight: 700; color: var(--green-deep);">Santini et al. (2024)</td>
+                <td>Ecosistema de datos y decisiones basadas en evidencia.</td>
+              </tr>
+            </tbody>
+          </table>
       </div>
       
-      <div class="reveal img-wrapper" style="background:transparent; border:none;">
+      <div class="reveal img-wrapper" style="background: white; border: 1px solid rgba(0,0,0,0.05); min-height: 500px;">
           <div class="img-fallback">
-              <!-- Diagrama CSS Puro como fallback -->
-              <div style="width:280px; height:280px; border:4px dashed var(--green-soft); border-radius:50%; display:grid; place-items:center; position:relative;">
-                  <div style="text-align:center;">
-                      <i class="fas fa-arrows-spin" style="font-size:3.5rem; color:var(--green-deep); margin-bottom:12px;"></i>
-                      <p class="text-label">CICLO DE VALOR</p>
-                  </div>
-                  <span style="position:absolute; top:-18px; background:var(--bg-main); padding:0 12px; font-weight:700; color:var(--accent-uninorte); border:1px solid #eee; border-radius:20px;">EDM</span>
-                  <span style="position:absolute; bottom:-18px; background:var(--bg-main); padding:0 12px; font-weight:700; color:var(--green-deep); border:1px solid #eee; border-radius:20px;">PBRM</span>
-              </div>
+              <i class="fas fa-project-diagram" style="font-size: 3rem; color: #ddd; margin-bottom: 10px;"></i>
+              <p style="color: #999;">Diagrama del Marco Teórico</p>
           </div>
-          <img src="assets/images/marco.jpg" class="img-cover" alt="Diagrama Marco Teórico" loading="lazy" onerror="this.style.display='none'">
+          <img src="assets/images/marco.png" class="img-cover" style="object-fit: contain; padding: 10px;" alt="Diagrama Marco Teórico" loading="lazy" onerror="this.style.display='none'">
       </div>
     </div>
   </section>
@@ -529,11 +554,10 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
     </div>
   </section>
 
-  <!-- 8. CASO DE ESTUDIO (WOW Table con Energía y Textos Completos) -->
+  <!-- 8. CASO DE ESTUDIO -->
   <section class="slide">
     <h2 class="text-h2">Caso: Alcaldía de Santa Marta</h2>
     <div class="grid-2">
-      <!-- Columna Izquierda: Información -->
       <div class="reveal">
         <div class="flex-row mb-2">
             <div style="width:50px; height:50px; background:var(--bg-panel); border-radius:50%; display:grid; place-items:center; color:var(--accent-uninorte); flex-shrink:0;">
@@ -564,7 +588,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
         </div>
       </div>
       
-      <!-- Columna Derecha: Tabla Dinámica WOW -->
+      <!-- Tabla Dinámica WOW -->
       <div class="table-container reveal">
           <h3 class="text-h3" style="margin-bottom: 20px; border-bottom: 2px solid var(--line-soft); padding-bottom: 10px; display: inline-block;">Medición de madurez</h3>
           
@@ -577,6 +601,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
               </tr>
             </thead>
             <tbody>
+              <!-- D1 -->
               <tr class="wow-table-row">
                 <td><span class="code-badge">D1</span></td>
                 <td class="dim-text">Enfoque ciudadano e información para la decisión</td>
@@ -587,6 +612,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
                   </div>
                 </td>
               </tr>
+              <!-- D2 -->
               <tr class="wow-table-row">
                 <td><span class="code-badge">D2</span></td>
                 <td class="dim-text">Gobierno y dirección de TI</td>
@@ -597,6 +623,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
                   </div>
                 </td>
               </tr>
+              <!-- D3 -->
               <tr class="wow-table-row">
                 <td><span class="code-badge">D3</span></td>
                 <td class="dim-text">Gestión de servicios y de proyectos/programas de TI</td>
@@ -607,6 +634,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
                   </div>
                 </td>
               </tr>
+              <!-- D4 -->
               <tr class="wow-table-row">
                 <td><span class="code-badge">D4</span></td>
                 <td class="dim-text">Datos, analítica, calidad, riesgo y seguridad de TI</td>
@@ -617,6 +645,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
                   </div>
                 </td>
               </tr>
+              <!-- D5 -->
               <tr class="wow-table-row">
                 <td><span class="code-badge">D5</span></td>
                 <td class="dim-text">Capacidades organizacionales, talento y sostenibilidad del sistema de TI</td>
@@ -633,20 +662,18 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
     </div>
   </section>
 
-  <!-- 9. RESULTADOS (NUEVO DISEÑO INTERACTIVO) -->
+  <!-- 9. RESULTADOS -->
   <section class="slide">
     <h2 class="text-h2">Resultados de la Validación</h2>
     
     <div class="results-grid">
-        
-        <!-- 1. MADUREZ (Dato Ancla) -->
+        <!-- 1. MADUREZ -->
         <div class="result-card score-card">
             <h3 class="rc-title"><i class="fas fa-chart-pie"></i> Madurez Promedio</h3>
             <div class="big-score">2,8</div>
             <p style="font-size: 1.2rem; margin:0; opacity: 0.9;">56% Global</p>
             
             <div style="margin-top: 20px; text-align: left; width: 100%;">
-                
                 <!-- Barra 1: Dimensiones en Nivel 3 -->
                 <div class="score-detail">
                     <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.85rem;">
@@ -657,7 +684,6 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
                         <div style="width:60%; height:100%; background:#4caf50;"></div>
                     </div>
                 </div>
-                
                 <!-- Barra 2: Dimensión D4 (Crítica) -->
                 <div class="score-detail" style="background: rgba(227, 62, 51, 0.15); margin-top: 10px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.85rem;">
@@ -674,7 +700,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
             </div>
         </div>
 
-        <!-- 2. DIAGNÓSTICO -->
+        <!-- 2. DIAGNOSTICO -->
         <div class="result-card">
             <h3 class="rc-title"><i class="fas fa-stethoscope" style="color:var(--green-mid);"></i> Diagnóstico</h3>
             <p class="rc-body">
@@ -687,15 +713,15 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
             </div>
         </div>
 
-        <!-- 3. HALLAZGO CENTRAL -->
+        <!-- 3. HALLAZGO -->
         <div class="result-card" style="border-top: 4px solid var(--accent-uninorte);">
             <h3 class="rc-title"><i class="fas fa-lightbulb" style="color:var(--accent-uninorte);"></i> Hallazgo Central</h3>
             <p class="rc-body">
                 Existe una <strong>base formal sólida</strong> (PETI 2024-27, Dirección TIC), pero persisten debilidades críticas en la <span class="highlight-text">operacionalización</span> del gobierno de TI y la integración real.
             </p>
         </div>
-
-        <!-- 4. ADAPTACIÓN (IMPONENTE) -->
+        
+        <!-- 4. ADAPTACION (IMPONENTE) -->
         <div class="result-card card-adaptation">
              <h3 class="rc-title"><i class="fas fa-sliders" style="color:var(--green-mid);"></i> Adaptación del Modelo</h3>
              
@@ -747,14 +773,12 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
                 </div>
             </div>
         </div>
-
     </div>
   </section>
 
-  <!-- 10. CONCLUSIONES (Bento Grid Interactivo) -->
+  <!-- 10. CONCLUSIONES -->
   <section class="slide">
     <h2 class="text-h2" style="margin-bottom: 30px;">Conclusiones</h2>
-    
     <div class="bento-grid">
         <!-- Fila 1 -->
         <div class="bento-card span-2 bg-deep">
@@ -858,7 +882,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
   <!-- CONTROLES -->
   <div class="controls">
     <button class="btn-nav" id="prevBtn"><i class="fas fa-arrow-left"></i></button>
-    <div id="slide-counter" aria-live="polite">1 / 12</div>
+    <div id="slide-counter">1 / 12</div>
     <button class="btn-nav" id="nextBtn"><i class="fas fa-arrow-right"></i></button>
   </div>
 
@@ -876,7 +900,6 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
           </div>
       </div>
   </div>
-
 </div>
 
 <!-- =========================================
