@@ -210,7 +210,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
 
 .rc-body { font-size: 0.95rem; line-height: 1.5; color: var(--text-muted); }
 
-/* --- CICLO IMPLEMENTACIÓN (Slide 9) --- */
+/* --- CICLO IMPLEMENTACIÓN (Slide 9 - Curvo) --- */
 .cycle-wrapper { position: relative; width: 100%; height: 100%; min-height: 150px; display: flex; justify-content: center; align-items: center; margin-top: 10px; }
 .cycle-svg { position: absolute; width: 80%; height: 80%; top: 10%; left: 10%; pointer-events: none; }
 .arrow-path { fill: none; stroke: var(--green-soft); stroke-width: 2; stroke-dasharray: 6; animation: dash 30s linear infinite; opacity: 0.5; }
@@ -254,6 +254,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
 .slide.active .reveal:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
 .slide.active .reveal:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
 
+/* Animación Específica */
 .slide.active .wow-table-row { opacity: 0; animation: slideInLeft 0.8s ease forwards; }
 .slide.active .progress-fill { animation: growBar 1s cubic-bezier(0.22, 1, 0.36, 1) forwards; animation-delay: 1s; }
 .slide.active .result-card, .slide.active .bento-card { opacity: 0; animation: fadeUp 0.6s ease forwards; }
@@ -359,7 +360,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
 
   <!-- 2. INTRODUCCIÓN -->
   <section class="slide">
-    <h2 class="text-h2">Contexto y motivación</h2>
+    <h2 class="text-h2">Introducción</h2>
     <div class="grid-2">
       <div class="reveal">
         <ul class="list-custom">
@@ -376,7 +377,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
                </div>
                <p class="text-label mt-lg" style="color:var(--accent-uninorte);">Foco Ciudadano</p>
            </div>
-           <img src="assets/images/intro.jpg" class="img-cover" alt="Contexto" onerror="this.style.display='none'">
+           <img src="assets/images/intro.jpg" class="img-cover" alt="Contexto Ciudadano" onerror="this.style.display='none'">
       </div>
     </div>
   </section>
@@ -438,25 +439,25 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
       <div class="reveal" style="border:1px solid var(--green-deep); padding:20px; margin-bottom: 20px; border-radius: var(--radius);">
         <span style="position:absolute; top:-14px; left:24px; background:var(--bg-main); padding:0 10px; font-weight:700; color:var(--accent-uninorte); font-size:0.9rem; letter-spacing:1px;">OBJETIVO GENERAL</span>
         <p style="font-family:var(--font-title); font-size:1.4rem; line-height:1.4; margin:0; color:var(--green-deep);">
-            Diseñar un sistema para la gobernanza y gestión integral de las TI para entes territoriales que sirva como Impulsor para la transformación digital y alineada con estándares internacionales y regulación.
+            Diseñar un sistema para la gobernanza y gestión integral de las tecnologías de la Información para los entes territoriales que sirva como Impulsor para la transformación digital, el desarrollo de la arquitectura empresarial y alineada con los estándares internacionales y la regulación en Colombia.
         </p>
       </div>
       <div class="grid-4 reveal" style="align-items: start;">
-          <div class="card-highlight" style="border-left-color: var(--green-mid);">
-            <strong class="text-label">Específico 1</strong>
-            <p class="text-body" style="font-size:1rem; margin:0;">Identificar los componentes conceptuales claves a partir de la revisión sistemática.</p>
+          <div class="card-highlight" style="border-left-color: var(--green-mid); padding: 1.2rem;">
+            <strong class="text-label" style="display:block; margin-bottom:8px;">Específico 1</strong>
+            <p class="text-body" style="font-size:1.1rem; margin:0;">Identificar los componentes conceptuales claves de gobernanza y gestión integral de las tecnologías de la Información para los entes territoriales a partir de la revisión sistemática de la literatura.</p>
           </div>
-          <div class="card-highlight" style="border-left-color: var(--green-mid);">
-            <strong class="text-label">Específico 2</strong>
-            <p class="text-body" style="font-size:1rem; margin:0;">Estructurar el sistema gobernanza y gestión integral de TI.</p>
+          <div class="card-highlight" style="border-left-color: var(--green-mid); padding: 1.2rem;">
+            <strong class="text-label" style="display:block; margin-bottom:8px;">Específico 2</strong>
+            <p class="text-body" style="font-size:1.1rem; margin:0;">Estructurar el sistema gobernanza y gestión integral de las tecnologías de la Información para los entes territoriales.</p>
           </div>
-          <div class="card-highlight" style="border-left-color: var(--green-mid);">
-            <strong class="text-label">Específico 3</strong>
-            <p class="text-body" style="font-size:1rem; margin:0;">Validar el sistema a través de un modelo de madurez.</p>
+          <div class="card-highlight" style="border-left-color: var(--green-mid); padding: 1.2rem;">
+            <strong class="text-label" style="display:block; margin-bottom:8px;">Específico 3</strong>
+            <p class="text-body" style="font-size:1.1rem; margin:0;">Validar el sistema de gobernanza y gestión integral de las tecnologías de la Información para los entes territoriales a través de un modelo de madurez.</p>
           </div>
-          <div class="card-highlight" style="border-left-color: var(--green-mid);">
-            <strong class="text-label">Específico 4</strong>
-            <p class="text-body" style="font-size:1rem; margin:0;">Desarrollar el caso de estudio en entes territoriales.</p>
+          <div class="card-highlight" style="border-left-color: var(--green-mid); padding: 1.2rem;">
+            <strong class="text-label" style="display:block; margin-bottom:8px;">Específico 4</strong>
+            <p class="text-body" style="font-size:1.1rem; margin:0;">Desarrollar el caso de estudio gobernanza y gestión integral de las tecnologías de la Información para los entes territoriales.</p>
           </div>
       </div>
     </div>
@@ -475,17 +476,25 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
             <h3 class="text-h3" style="color:var(--green-deep);">Gestión de TI (PBRM)</h3>
             <p class="text-body">Convierte dirección en capacidades. <br><em class="color-muted">Planear, Construir, Operar, Monitorear.</em></p>
         </div>
+         <div>
+            <h3 class="text-h3" style="color:var(--green-mid);">Gestión Corporativa</h3>
+            <p class="text-body">Ejecuta estrategia mediante recursos y procesos.</p>
+        </div>
       </div>
+      
       <div class="reveal img-wrapper" style="background:transparent; border:none;">
           <div class="img-fallback">
-              <div style="width:250px; height:250px; border:4px dashed var(--green-soft); border-radius:50%; display:grid; place-items:center; position:relative;">
+              <!-- Diagrama CSS Puro como fallback -->
+              <div style="width:280px; height:280px; border:4px dashed var(--green-soft); border-radius:50%; display:grid; place-items:center; position:relative;">
                   <div style="text-align:center;">
-                      <i class="fas fa-arrows-spin" style="font-size:3.5rem; color:var(--green-deep); margin-bottom:10px;"></i>
+                      <i class="fas fa-arrows-spin" style="font-size:3.5rem; color:var(--green-deep); margin-bottom:12px;"></i>
                       <p class="text-label">CICLO DE VALOR</p>
                   </div>
+                  <span style="position:absolute; top:-18px; background:var(--bg-main); padding:0 12px; font-weight:700; color:var(--accent-uninorte); border:1px solid #eee; border-radius:20px;">EDM</span>
+                  <span style="position:absolute; bottom:-18px; background:var(--bg-main); padding:0 12px; font-weight:700; color:var(--green-deep); border:1px solid #eee; border-radius:20px;">PBRM</span>
               </div>
           </div>
-          <img src="assets/images/marco.jpg" class="img-cover" alt="Diagrama Marco" onerror="this.style.display='none'">
+          <img src="assets/images/marco.jpg" class="img-cover" alt="Diagrama Marco Teórico" loading="lazy" onerror="this.style.display='none'">
       </div>
     </div>
   </section>
@@ -498,47 +507,125 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
         <ul class="list-custom">
             <li><strong>Enfoque Sistémico:</strong> Articulación entre Gobierno Corporativo y TI.</li>
             <li><strong>Eje Central:</strong> El ciudadano (experiencia y valor público).</li>
-            <li><strong>Componentes:</strong> Direccionamiento, Arquitectura y Procesos.</li>
+            <li><strong>Componentes:</strong> Direccionamiento (CMI), Arquitectura y Procesos.</li>
             <li><strong>Capacidades:</strong> Servicios, proyectos, talento, calidad.</li>
+            <li><strong>Control:</strong> Medición y madurez.</li>
         </ul>
       </div>
+      
       <div class="reveal img-wrapper">
           <div class="scrim"></div>
           <div class="content-overlay">
-              <h3 class="text-h3" style="color:white; border-bottom:3px solid var(--accent-uninorte); padding-bottom:1rem;">La Clave</h3>
-              <p style="font-family:var(--font-title); font-size:1.8rem; font-style:italic; margin:0; color: #fff;">"Traducir la estrategia institucional en ejecución técnica medible."</p>
+              <h3 class="text-h3" style="color:white; border-bottom:3px solid var(--accent-uninorte); padding-bottom:1rem; margin-bottom: 1.5rem;">La Clave</h3>
+              <p style="font-family:var(--font-title); font-size:2rem; font-style:italic; margin:0; color: #fff; line-height: 1.4; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                  "Traducir la estrategia institucional en ejecución técnica medible."
+              </p>
+              <div style="margin-top:2.5rem; width: 70px; height: 70px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+                  <i class="fas fa-check-double" style="font-size:2rem; color: #fff;"></i>
+              </div>
           </div>
-          <img src="assets/images/modelo.jpg" class="img-cover" alt="Modelo" onerror="this.style.display='none'">
+          <img src="assets/images/modelo.jpg" class="img-cover" alt="Diagrama del Modelo" loading="lazy" onerror="this.style.display='none'">
       </div>
     </div>
   </section>
 
-  <!-- 8. CASO DE ESTUDIO -->
+  <!-- 8. CASO DE ESTUDIO (WOW Table con Energía y Textos Completos) -->
   <section class="slide">
     <h2 class="text-h2">Caso: Alcaldía de Santa Marta</h2>
     <div class="grid-2">
+      <!-- Columna Izquierda: Información -->
       <div class="reveal">
-          <p class="text-body">Aplicación real del modelo para validar su efectividad en un entorno complejo.</p>
-          <div class="card-highlight" style="margin-top:20px;">
-              <strong class="text-label">Diagnóstico</strong>
-              <p class="text-body" style="margin-top:5px;">DOFA y análisis de brechas TI.</p>
-          </div>
+        <div class="flex-row mb-2">
+            <div style="width:50px; height:50px; background:var(--bg-panel); border-radius:50%; display:grid; place-items:center; color:var(--accent-uninorte); flex-shrink:0;">
+                <i class="fas fa-map-location-dot" style="font-size:1.2rem;"></i>
+            </div>
+            <div>
+                <strong class="text-label" style="color:var(--text-main);">Caracterización</strong>
+                <p class="text-body" style="margin:0; font-size:1.1rem;">Análisis del mapa de procesos real.</p>
+            </div>
+        </div>
+        <div class="flex-row mb-2">
+            <div style="width:50px; height:50px; background:var(--bg-panel); border-radius:50%; display:grid; place-items:center; color:var(--accent-uninorte); flex-shrink:0;">
+                <i class="fas fa-stethoscope" style="font-size:1.2rem;"></i>
+            </div>
+            <div>
+                <strong class="text-label" style="color:var(--text-main);">Diagnóstico</strong>
+                <p class="text-body" style="margin:0; font-size:1.1rem;">DOFA y análisis de brechas TI.</p>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div style="width:50px; height:50px; background:var(--bg-panel); border-radius:50%; display:grid; place-items:center; color:var(--accent-uninorte); flex-shrink:0;">
+                <i class="fas fa-chart-line" style="font-size:1.2rem;"></i>
+            </div>
+            <div>
+                <strong class="text-label" style="color:var(--text-main);">Madurez & Plan</strong>
+                <p class="text-body" style="margin:0; font-size:1.1rem;">Adaptación del sistema por fases.</p>
+            </div>
+        </div>
       </div>
+      
+      <!-- Columna Derecha: Tabla Dinámica WOW -->
       <div class="table-container reveal">
-          <h3 class="text-h3">Medición de madurez</h3>
+          <h3 class="text-h3" style="margin-bottom: 20px; border-bottom: 2px solid var(--line-soft); padding-bottom: 10px; display: inline-block;">Medición de madurez</h3>
+          
           <table class="wow-table">
+            <thead>
+              <tr>
+                <th>Cód</th>
+                <th>Dimensión</th>
+                <th>Nivel</th>
+              </tr>
+            </thead>
             <tbody>
               <tr class="wow-table-row">
-                <td><span class="code-badge">D1</span></td><td class="dim-text">Enfoque ciudadano</td>
-                <td><div class="level-container"><span class="level-num">3</span><div class="progress-track"><div class="progress-fill fill-3" style="--w: 60%"></div></div></div></td>
+                <td><span class="code-badge">D1</span></td>
+                <td class="dim-text">Enfoque ciudadano e información para la decisión</td>
+                <td>
+                  <div class="level-container">
+                    <span class="level-num">3</span>
+                    <div class="progress-track"><div class="progress-fill fill-3" style="--w: 60%"></div></div>
+                  </div>
+                </td>
               </tr>
               <tr class="wow-table-row">
-                <td><span class="code-badge">D2</span></td><td class="dim-text">Gobierno y dirección</td>
-                <td><div class="level-container"><span class="level-num">3</span><div class="progress-track"><div class="progress-fill fill-3" style="--w: 60%"></div></div></div></td>
+                <td><span class="code-badge">D2</span></td>
+                <td class="dim-text">Gobierno y dirección de TI</td>
+                <td>
+                  <div class="level-container">
+                    <span class="level-num">3</span>
+                    <div class="progress-track"><div class="progress-fill fill-3" style="--w: 60%"></div></div>
+                  </div>
+                </td>
               </tr>
               <tr class="wow-table-row">
-                <td><span class="code-badge">D4</span></td><td class="dim-text">Datos y seguridad</td>
-                <td><div class="level-container"><span class="level-num">2</span><div class="progress-track"><div class="progress-fill fill-2" style="--w: 40%"></div></div></div></td>
+                <td><span class="code-badge">D3</span></td>
+                <td class="dim-text">Gestión de servicios y de proyectos/programas de TI</td>
+                <td>
+                  <div class="level-container">
+                    <span class="level-num">3</span>
+                    <div class="progress-track"><div class="progress-fill fill-3" style="--w: 60%"></div></div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="wow-table-row">
+                <td><span class="code-badge">D4</span></td>
+                <td class="dim-text">Datos, analítica, calidad, riesgo y seguridad de TI</td>
+                <td>
+                  <div class="level-container">
+                    <span class="level-num">2</span>
+                    <div class="progress-track"><div class="progress-fill fill-2" style="--w: 40%"></div></div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="wow-table-row">
+                <td><span class="code-badge">D5</span></td>
+                <td class="dim-text">Capacidades organizacionales, talento y sostenibilidad del sistema de TI</td>
+                <td>
+                  <div class="level-container">
+                    <span class="level-num">3</span>
+                    <div class="progress-track"><div class="progress-fill fill-3" style="--w: 60%"></div></div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -546,36 +633,53 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
     </div>
   </section>
 
-  <!-- 9. RESULTADOS -->
+  <!-- 9. RESULTADOS (NUEVO DISEÑO INTERACTIVO) -->
   <section class="slide">
-    <h2 class="text-h2">Resultados</h2>
+    <h2 class="text-h2">Resultados de la Validación</h2>
+    
     <div class="results-grid">
-        <!-- 1. MADUREZ -->
+        
+        <!-- 1. MADUREZ (Dato Ancla) -->
         <div class="result-card score-card">
             <h3 class="rc-title"><i class="fas fa-chart-pie"></i> Madurez Promedio</h3>
             <div class="big-score">2,8</div>
             <p style="font-size: 1.2rem; margin:0; opacity: 0.9;">56% Global</p>
+            
             <div style="margin-top: 20px; text-align: left; width: 100%;">
+                
+                <!-- Barra 1: Dimensiones en Nivel 3 -->
                 <div class="score-detail">
                     <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.85rem;">
-                        <span>D1, D2, D3, D5</span><span style="font-weight:700;">Nivel 3 (60%)</span>
+                        <span>D1, D2, D3 y D5</span>
+                        <span style="font-weight:700;">Nivel 3 (60%)</span>
                     </div>
-                    <div style="height:8px; background:rgba(255,255,255,0.2); border-radius:4px; overflow:hidden;"><div style="width:60%; height:100%; background:#4caf50;"></div></div>
+                    <div style="height:8px; background:rgba(255,255,255,0.2); border-radius:4px; overflow:hidden;">
+                        <div style="width:60%; height:100%; background:#4caf50;"></div>
+                    </div>
                 </div>
+                
+                <!-- Barra 2: Dimensión D4 (Crítica) -->
                 <div class="score-detail" style="background: rgba(227, 62, 51, 0.15); margin-top: 10px;">
                     <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:0.85rem;">
-                        <span>D4 (Más baja)</span><span style="font-weight:700; color:#ff8a80;">Nivel 2 (40%)</span>
+                        <span>D4 (Más baja)</span>
+                        <span style="font-weight:700; color:#ff8a80;">Nivel 2 (40%)</span>
                     </div>
-                    <div style="height:8px; background:rgba(255,255,255,0.2); border-radius:4px; overflow:hidden;"><div style="width:40%; height:100%; background:#E33E33;"></div></div>
-                    <p style="font-size: 0.8rem; margin: 8px 0 0 0;">Brecha crítica en datos y riesgo.</p>
+                    <div style="height:8px; background:rgba(255,255,255,0.2); border-radius:4px; overflow:hidden;">
+                        <div style="width:40%; height:100%; background:#E33E33;"></div>
+                    </div>
+                    <p style="font-size: 0.8rem; margin: 8px 0 0 0; line-height: 1.3; color: rgba(255,255,255,0.95);">
+                        <i class="fas fa-exclamation-triangle"></i> Brecha crítica en datos, analítica, seguridad y riesgo.
+                    </p>
                 </div>
             </div>
         </div>
 
-        <!-- 2. DIAGNOSTICO -->
+        <!-- 2. DIAGNÓSTICO -->
         <div class="result-card">
             <h3 class="rc-title"><i class="fas fa-stethoscope" style="color:var(--green-mid);"></i> Diagnóstico</h3>
-            <p class="rc-body">Se identifican brechas en <strong>gobernanza</strong>, modelo operativo, y capacidades digitales.</p>
+            <p class="rc-body">
+                Se identifican brechas significativas en <strong>gobernanza/alineación</strong>, modelo operativo, y capacidades digitales.
+            </p>
             <div style="margin-top:auto; font-size:0.85rem; color:var(--text-muted); display:flex; gap:10px;">
                 <span style="background:#eee; padding:4px 8px; border-radius:4px;">AS-IS</span>
                 <i class="fas fa-arrow-right" style="color:var(--accent-uninorte);"></i>
@@ -583,13 +687,15 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
             </div>
         </div>
 
-        <!-- 3. HALLAZGO -->
+        <!-- 3. HALLAZGO CENTRAL -->
         <div class="result-card" style="border-top: 4px solid var(--accent-uninorte);">
-            <h3 class="rc-title"><i class="fas fa-lightbulb" style="color:var(--accent-uninorte);"></i> Hallazgo</h3>
-            <p class="rc-body">Base formal sólida (PETI), pero debilidad crítica en la <strong>operacionalización</strong>.</p>
+            <h3 class="rc-title"><i class="fas fa-lightbulb" style="color:var(--accent-uninorte);"></i> Hallazgo Central</h3>
+            <p class="rc-body">
+                Existe una <strong>base formal sólida</strong> (PETI 2024-27, Dirección TIC), pero persisten debilidades críticas en la <span class="highlight-text">operacionalización</span> del gobierno de TI y la integración real.
+            </p>
         </div>
-        
-        <!-- 4. ADAPTACION -->
+
+        <!-- 4. ADAPTACIÓN (IMPONENTE) -->
         <div class="result-card card-adaptation">
              <h3 class="rc-title"><i class="fas fa-sliders" style="color:var(--green-mid);"></i> Adaptación del Modelo</h3>
              
@@ -613,55 +719,94 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
              </div>
         </div>
 
-        <!-- 5. IMPLEMENTACIÓN CICLO -->
+        <!-- 5. IMPLEMENTACIÓN (CICLO) -->
         <div class="result-card bg-panel card-implementation">
             <h3 class="rc-title"><i class="fas fa-sync-alt" style="color:var(--green-mid);"></i> Implementación</h3>
             <div class="cycle-wrapper">
                 <svg class="cycle-svg" viewBox="0 0 200 150">
-                    <path class="arrow-path" d="M100,20 Q180,60 100,130 Q20,60 100,20" />
+                    <path class="arrow-path" d="M110,30 Q160,50 150,100" marker-end="url(#arrowhead)"/>
+                    <path class="arrow-path" d="M140,120 Q100,140 60,120" marker-end="url(#arrowhead)"/>
+                    <path class="arrow-path" d="M50,100 Q40,50 90,30" marker-end="url(#arrowhead)"/>
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#6F9E96"/>
+                        </marker>
+                    </defs>
                 </svg>
                 <div class="cycle-node node-1">
                     <div class="c-icon"><i class="fas fa-landmark"></i></div>
-                    <span class="c-text">Institucionalizar</span>
+                    <span class="c-text">Institucionalizar Gobernanza</span>
                 </div>
                 <div class="cycle-node node-2">
                     <div class="c-icon"><i class="fas fa-database"></i></div>
-                    <span class="c-text">Fortalecer</span>
+                    <span class="c-text">Fortalecer Datos</span>
                 </div>
                 <div class="cycle-node node-3">
                     <div class="c-icon"><i class="fas fa-people-group"></i></div>
-                    <span class="c-text">Gestión Cambio</span>
+                    <span class="c-text">Gestión del Cambio</span>
                 </div>
             </div>
         </div>
+
     </div>
   </section>
 
-  <!-- 10. CONCLUSIONES -->
+  <!-- 10. CONCLUSIONES (Bento Grid Interactivo) -->
   <section class="slide">
-    <h2 class="text-h2">Conclusiones</h2>
+    <h2 class="text-h2" style="margin-bottom: 30px;">Conclusiones</h2>
+    
     <div class="bento-grid">
-        <div class="bento-card bg-deep">
+        <!-- Fila 1 -->
+        <div class="bento-card span-2 bg-deep">
+            <i class="fas fa-puzzle-piece bento-icon"></i>
             <h3 class="bento-title">Viabilidad Sistémica</h3>
-            <p class="bento-text">Sistema integrado viable articulado con gobierno corporativo.</p>
+            <p class="bento-text">Es viable un sistema integrado de gobernanza y gestión de TI, articulado con gobierno corporativo y transformación digital, incorporando riesgos y desempeño.</p>
         </div>
         <div class="bento-card bg-accent">
+            <i class="fas fa-building-columns bento-icon"></i>
             <h3 class="bento-title">Adaptabilidad</h3>
-            <p class="bento-text">El sistema se adapta aprovechando instrumentos existentes.</p>
+            <p class="bento-text">El sistema se adapta aprovechando instrumentos existentes (PETI, Dirección TIC) para cerrar brechas.</p>
         </div>
+
+        <!-- Fila 2 -->
         <div class="bento-card bg-light">
+            <i class="fas fa-route bento-icon" style="color:var(--green-mid)"></i>
             <h3 class="bento-title" style="color:var(--green-deep)">Modelo Replicable</h3>
-            <p class="bento-text" style="color:var(--text-main)">Ruta efectiva: Diagnóstico + Madurez + Diseño + Plan.</p>
+            <p class="bento-text" style="color:var(--text-main)">La secuencia: <strong>Diagnóstico + Madurez + Diseño + Plan</strong> es una ruta efectiva para entidades públicas.</p>
         </div>
         <div class="bento-card bg-light">
+            <i class="fas fa-chart-bar bento-icon" style="color:var(--green-mid)"></i>
             <h3 class="bento-title" style="color:var(--green-deep)">Priorización</h3>
-            <p class="bento-text" style="color:var(--text-main)">El modelo de madurez estructura capacidades clave.</p>
+            <p class="bento-text" style="color:var(--text-main)">El modelo de madurez estructura capacidades clave y ayuda a priorizar mejoras de alto impacto.</p>
         </div>
-        <div class="bento-card span-full" style="flex-direction:row; align-items:center;">
-             <div style="flex:1;">
-                 <h3 class="bento-title" style="color:var(--green-deep)">Implementación Gradual</h3>
-                 <p class="bento-text" style="color:var(--text-main)">La sostenibilidad depende del compromiso directivo.</p>
-             </div>
+        
+        <!-- Fila 3: Proceso Interactivo -->
+        <div class="bento-card span-full process-card">
+            <h3 class="bento-title" style="color:var(--green-deep); margin-bottom: 20px;">Implementación Gradual <span style="font-weight:400; font-size:0.9em; opacity:0.7;">& Sostenibilidad</span></h3>
+            
+            <div class="process-timeline">
+                <div class="timeline-line"></div>
+                <div class="timeline-fill"></div>
+                
+                <div class="process-step">
+                    <div class="step-circle"><i class="fas fa-file-signature"></i></div>
+                    <span class="step-text">Formalizar</span>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-circle"><i class="fas fa-rocket"></i></div>
+                    <span class="step-text">Desplegar</span>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-circle"><i class="fas fa-shield-halved"></i></div>
+                    <span class="step-text">Consolidar</span>
+                </div>
+            </div>
+            
+            <p class="bento-text" style="margin-top: 15px; text-align: center; font-size: 0.9rem; color: var(--text-muted);">
+                <i class="fas fa-info-circle"></i> Clave: Compromiso Directivo + Recursos + Gestión del Cambio
+            </p>
         </div>
     </div>
   </section>
@@ -669,25 +814,51 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
   <!-- 11. REFERENCIAS -->
   <section class="slide">
     <h2 class="text-h2">Referencias</h2>
-    <div class="reveal">
-        <p class="text-body">Fundamentado en revisión exhaustiva de estándares y normativa.</p>
-        <button class="btn-biblio" onclick="openModal()"><i class="fas fa-book-open"></i> Ver Bibliografía</button>
+    <div class="reveal" style="display:flex; flex-direction:column; align-items:start; gap:30px;">
+        <p class="text-body" style="max-width: 800px;">
+            Este trabajo se fundamenta en una revisión exhaustiva de estándares internacionales, normatividad colombiana y literatura académica sobre gobernanza de TI.
+        </p>
+        
+        <button class="btn-biblio" onclick="openModal()">
+            <i class="fas fa-book-open"></i> Ver Bibliografía Completa
+        </button>
+        
+        <div class="grid-2" style="width:100%; margin-top:20px;">
+             <div class="card-highlight">
+                 <strong class="text-label">Marcos Principales</strong>
+                 <ul class="list-custom" style="margin-top:10px;">
+                     <li>COBIT 2019 (ISACA)</li>
+                     <li>TOGAF 9.2 (The Open Group)</li>
+                     <li>ITIL 4 (AXELOS)</li>
+                 </ul>
+             </div>
+             <div class="card-highlight" style="border-left-color: var(--green-mid);">
+                 <strong class="text-label">Normativa Colombia</strong>
+                 <ul class="list-custom" style="margin-top:10px;">
+                     <li>MinTIC (Marco de Arquitectura)</li>
+                     <li>Decreto 1499 de 2017</li>
+                     <li>Modelos de Madurez (Ciudades Inteligentes)</li>
+                 </ul>
+             </div>
+        </div>
     </div>
   </section>
 
-  <!-- 12. FIN -->
+  <!-- 12. FIN (Cierre) -->
   <section class="slide">
       <div style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-          <h1 class="reveal" style="font-size: 6rem; color: var(--green-deep);">FIN</h1>
-          <div class="divider reveal" style="width: 100px; background: var(--accent-uninorte); height: 5px; margin: 30px auto;"></div>
-          <p class="text-body reveal" style="font-family: var(--font-title); font-size: 2rem; font-style: italic;">Gracias por su atención</p>
+          <h1 class="reveal" style="font-size: 6rem; margin: 0; line-height: 1; color: var(--green-deep); letter-spacing: 10px;">FIN</h1>
+          <div class="divider reveal" style="margin: 30px auto; width: 100px; background: var(--accent-uninorte); height: 5px;"></div>
+          <p class="text-body reveal" style="font-family: var(--font-title); font-size: 2rem; font-style: italic; color: var(--text-muted);">
+              Gracias por su atención
+          </p>
       </div>
   </section>
 
   <!-- CONTROLES -->
   <div class="controls">
     <button class="btn-nav" id="prevBtn"><i class="fas fa-arrow-left"></i></button>
-    <div id="slide-counter">1 / 12</div>
+    <div id="slide-counter" aria-live="polite">1 / 12</div>
     <button class="btn-nav" id="nextBtn"><i class="fas fa-arrow-right"></i></button>
   </div>
 
@@ -699,15 +870,27 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
               <button class="close-modal" onclick="closeModal()">&times;</button>
           </div>
           <div class="modal-body">
-              <ul class="biblio-list" id="biblio-list-container"></ul>
+              <ul class="biblio-list" id="biblio-list-container">
+                  <!-- Se llenará dinámicamente -->
+              </ul>
           </div>
       </div>
   </div>
+
 </div>
 
+<!-- =========================================
+     LÓGICA JAVASCRIPT
+     ========================================= -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const state = { current: 0, slides: document.querySelectorAll('.slide') };
+  // Estado de la aplicación
+  const state = { 
+      current: 0, 
+      slides: document.querySelectorAll('.slide') 
+  };
+  
+  // Referencias UI
   const ui = { 
     bar: document.getElementById('progressBar'), 
     counter: document.getElementById('slide-counter'),
@@ -717,33 +900,48 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const total = state.slides.length;
 
+  // --- FUNCIÓN PARA CARGAR BIBLIOGRAFÍA ---
   const loadBibliography = async () => {
     try {
         const response = await fetch('bibliography.json');
         const data = await response.json();
-        document.getElementById('biblio-list-container').innerHTML = data.map(item => `<li>${item.ref}</li>`).join('');
-    } catch (e) {
+        const container = document.getElementById('biblio-list-container');
+        
+        container.innerHTML = data.map(item => `<li>${item.ref}</li>`).join('');
+    } catch (error) {
+        console.warn("No se pudo cargar el JSON externo. Usando datos de respaldo.");
         document.getElementById('biblio-list-container').innerHTML = `
-          <li style="color:red; list-style:none;">
-            <i class="fas fa-exclamation-triangle"></i> Para ver la bibliografía, abre este archivo desde un servidor local (localhost) o sube la carpeta a un hosting web.
+          <li style="color:red; list-style:none; padding:20px; text-align:center;">
+            <i class="fas fa-exclamation-triangle" style="font-size:2rem; margin-bottom:10px;"></i><br>
+            Para ver la bibliografía completa, asegúrate de abrir este archivo a través de un servidor local (localhost) o subir la carpeta a un hosting web, debido a las políticas de seguridad del navegador.
           </li>`;
     }
   };
 
+  // Actualizar vista
   const updateSlide = () => {
+    // 1. Mostrar slide activo
     state.slides.forEach((s, i) => s.classList.toggle('active', i === state.current));
-    ui.bar.style.width = `${((state.current + 1) / total) * 100}%`;
+    
+    // 2. Barra de Progreso
+    const progress = ((state.current + 1) / total) * 100;
+    ui.bar.style.width = `${progress}%`;
     ui.counter.textContent = `${state.current + 1} / ${total}`;
+
+    // 3. Estado de botones (UX: Deshabilitar en extremos)
     ui.prevBtn.disabled = state.current === 0;
     ui.nextBtn.disabled = state.current === total - 1;
   };
 
+  // Navegación
   const nextSlide = () => { if(state.current < total - 1) { state.current++; updateSlide(); } };
   const prevSlide = () => { if(state.current > 0) { state.current--; updateSlide(); } };
 
+  // Listeners Clic (Delegación)
   document.addEventListener('click', (e) => {
     const btn = e.target.closest('button');
     if (!btn) {
+        // Cerrar modal al hacer click fuera
         const modal = document.getElementById('biblioModal');
         if(modal && e.target === modal) modal.classList.remove('open');
         return;
@@ -751,19 +949,35 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btn.id === 'nextBtn') nextSlide();
     if (btn.id === 'prevBtn') prevSlide();
   });
-  
+
+  // Listeners Teclado
   document.addEventListener('keydown', (e) => {
-      if(e.key === 'ArrowRight') nextSlide();
-      if(e.key === 'ArrowLeft') prevSlide();
-      if(e.key === 'Escape') document.getElementById('biblioModal').classList.remove('open');
+    if(['ArrowRight', ' ', 'Enter'].includes(e.key)) nextSlide();
+    if(['ArrowLeft', 'Backspace'].includes(e.key)) prevSlide();
+    if(e.key === 'Escape') {
+        const modal = document.getElementById('biblioModal');
+        if(modal) modal.classList.remove('open');
+    }
   });
 
+  // Gestos Táctiles (Swipe)
+  let touchX = 0;
+  ui.app.addEventListener('touchstart', e => touchX = e.changedTouches[0].screenX, {passive: true});
+  ui.app.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].screenX - touchX;
+      if (Math.abs(diff) > 50) 
+          e.changedTouches[0].screenX < touchX ? nextSlide() : prevSlide();
+  }, {passive: true});
+
+  // Funciones Globales para Modal (Accesibles desde HTML onclick)
   window.openModal = () => document.getElementById('biblioModal').classList.add('open');
   window.closeModal = () => document.getElementById('biblioModal').classList.remove('open');
 
+  // Inicializar
   updateSlide();
-  loadBibliography();
+  loadBibliography(); // Cargar bibliografía externa
 });
 </script>
+
 </body>
 </html>
