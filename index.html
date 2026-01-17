@@ -132,10 +132,25 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
     background: var(--bg-panel); display: flex; align-items: center; justify-content: center;
     box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
 }
-.img-cover { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 0; }
+.img-cover { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 0; transition: transform 0.5s ease;}
 .img-fallback { position: absolute; inset: 0; z-index: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: var(--bg-panel); }
-.scrim { position: absolute; inset: 0; background: linear-gradient(135deg, var(--green-deep) 0%, rgba(31, 59, 55, 0.9) 100%); z-index: 1; }
-.content-overlay { position: relative; z-index: 2; padding: 2rem; text-align: center; color: white; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+
+/* --- INTERACTIVIDAD OVERLAYS (Slide 7) --- */
+.scrim { 
+    position: absolute; inset: 0; background: linear-gradient(135deg, var(--green-deep) 0%, rgba(31, 59, 55, 0.95) 100%); 
+    z-index: 1; transition: opacity 0.4s ease; 
+}
+.content-overlay { 
+    position: relative; z-index: 2; padding: 2rem; text-align: center; color: white; 
+    display: flex; flex-direction: column; justify-content: center; height: 100%;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Efecto Hover para revelar diagrama */
+.interactive-overlay { cursor: zoom-in; }
+.interactive-overlay:hover .scrim { opacity: 0; }
+.interactive-overlay:hover .content-overlay { opacity: 0; transform: scale(1.1); }
+.interactive-overlay:hover .img-cover { transform: scale(1.02); }
 
 /* Listas */
 .list-custom li { 
@@ -144,26 +159,24 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
 .list-custom li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 8px; height: 8px; border-radius: 50%; background: var(--green-mid); }
 .divider { width: 100%; height: 1px; background: var(--line-soft); margin: 20px 0; }
 
-/* --- TABLA WOW (Slide 8 - MEJORADA) --- */
+/* --- TABLA WOW (Slide 8) --- */
 .wow-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
 .wow-table th { text-align: left; font-size: 0.85rem; text-transform: uppercase; color: var(--green-mid); padding: 0 20px 5px; }
 .wow-table-row { background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.03); transition: transform 0.2s; }
 .wow-table-row:hover { transform: translateX(5px); border-left: 3px solid var(--accent-uninorte); }
-.wow-table td { padding: 15px 20px; vertical-align: middle; }
-.wow-table tr td:first-child { border-radius: 12px 0 0 12px; width: 60px; } /* Ancho fijo para código */
-.wow-table tr td:nth-child(3) { min-width: 250px; width: 35%; } /* Ancho generoso para las barras */
+.wow-table td { padding: 12px 20px; vertical-align: middle; }
+.wow-table tr td:first-child { border-radius: 12px 0 0 12px; }
 .wow-table tr td:last-child { border-radius: 0 12px 12px 0; }
-.code-badge { font-weight: 700; color: var(--accent-uninorte); background: rgba(196, 18, 47, 0.05); padding: 6px 10px; border-radius: 8px; font-size: 0.9rem; }
-.dim-text { font-size: 1rem; font-weight: 500; color: var(--text-main); line-height: 1.3; }
+.code-badge { font-weight: 700; color: var(--accent-uninorte); background: rgba(196, 18, 47, 0.05); padding: 6px 10px; border-radius: 8px; font-size: 0.85rem; }
 
-/* Barras Progreso Mejoradas */
-.level-container { display: flex; align-items: center; gap: 15px; width: 100%; }
-.level-num { font-weight: 700; color: var(--text-main); font-size: 1.1rem; min-width: 20px; }
-.progress-track { flex-grow: 1; height: 12px; background: #e0e0e0; border-radius: 6px; overflow: hidden; }
-.progress-fill { height: 100%; width: 0; transition: width 1s; border-radius: 6px; }
-.fill-1 { background: #E33E33; box-shadow: 0 0 10px rgba(227, 62, 51, 0.4); } 
-.fill-2 { background: #FFC107; box-shadow: 0 0 10px rgba(255, 193, 7, 0.4); } 
-.fill-3 { background: #2E7D32; box-shadow: 0 0 10px rgba(46, 125, 50, 0.4); }
+/* Barras Progreso */
+.level-container { display: flex; align-items: center; gap: 15px; width: 100%; max-width: 180px; }
+.level-num { font-weight: 700; color: var(--text-main); width: 15px; font-size: 0.9rem; }
+.progress-track { flex-grow: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+.progress-fill { height: 100%; width: 0; transition: width 1s; }
+.fill-1 { background: #E33E33; } 
+.fill-2 { background: #FFC107; } 
+.fill-3 { background: #2E7D32; }
 
 /* --- GRID RESULTADOS (Slide 9) --- */
 .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto 1fr; gap: 20px; height: 100%; }
@@ -260,6 +273,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
 @keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes growBar { from { width: 0; } to { width: var(--w); } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(227, 62, 51, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(227, 62, 51, 0); } 100% { box-shadow: 0 0 0 0 rgba(227, 62, 51, 0); } }
 
 /* --- CONTROLES --- */
 .controls { position: absolute; bottom: 1.5rem; right: 2rem; display: flex; gap: 10px; padding: 6px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 50; border: 1px solid rgba(255,255,255,0.5); }
@@ -495,7 +509,7 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
 
   <!-- 7. MODELO PROPUESTO (Interactive Reveal) -->
   <section class="slide">
-    <h2 class="text-h2">Sistema Integral Propuesto</h2>
+    <h2 class="text-h2">Modelo Propuesto</h2>
     <div class="grid-2" style="grid-template-columns: 0.7fr 1.3fr;">
       <div class="reveal">
         <ul class="list-custom">
@@ -517,8 +531,12 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
               <p style="font-family:var(--font-title); font-size:2rem; font-style:italic; margin:0; color: #fff; line-height: 1.4; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
                   "Traducir la estrategia institucional en ejecución técnica medible."
               </p>
-              <div style="margin-top:2.5rem; color:rgba(255,255,255,0.6); font-size: 0.9rem;">
-                  <i class="fas fa-mouse-pointer"></i> Pasar el mouse para ver diagrama
+              
+              <!-- CTA Button -->
+              <div style="margin-top:2.5rem;">
+                  <button class="btn-biblio" style="background: var(--accent-uninorte); border: none; font-size: 1.1rem; padding: 15px 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); animation: pulse 2s infinite;">
+                      <i class="fas fa-expand-arrows-alt"></i> Ver Diagrama del Modelo
+                  </button>
               </div>
           </div>
           
@@ -851,7 +869,9 @@ h1, h2 { font-family: var(--font-title); font-weight: 600; color: var(--green-de
       <div style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
           <h1 class="reveal" style="font-size: 6rem; color: var(--green-deep);">FIN</h1>
           <div class="divider reveal" style="width: 100px; background: var(--accent-uninorte); height: 5px; margin: 30px auto;"></div>
-          <p class="text-body reveal" style="font-family: var(--font-title); font-size: 2rem; font-style: italic;">Gracias por su atención</p>
+          <p class="text-body reveal" style="font-family: var(--font-title); font-size: 2rem; font-style: italic; color: var(--text-muted);">
+              Gracias por su atención
+          </p>
       </div>
   </section>
 
